@@ -1,0 +1,21 @@
+#container{
+
+}
+
+
+#map
+{
+
+    width: 1700px;
+    height: 2000px;
+    background-position: center;
+    top:0;
+    overflow: hidden;
+}
+
+
+.logo{
+    position: fixed;
+    left: 40%;
+    z-index: 900;
+}
