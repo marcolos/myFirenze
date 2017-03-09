@@ -1,62 +1,36 @@
-function initialize() {
-    var latlng = new google.maps.LatLng(43.7747, 11.25051); // centro della mappa
-    // definizione della mappa
-    var myOptions = {
-        zoom: 16,
-        center: latlng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR},
-        styles:[
-            {
-                "featureType": "road",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                    {
-                        "hue": "#007dff"
-                    },
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "hue": "#ff8800"
-                    },
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    },
-                    {
-                        "hue": "#edff00"
-                    }
-                ]
-            }
-        ]
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 43.88, lng: 11.55},
+        zoom: 13
+    });
+    var infoWindow = new google.maps.InfoWindow({map: map});
 
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Your Location');
+            map.setCenter(pos);
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
     }
-    mymap = new google.maps.Map(document.getElementById("map"), myOptions);
 }
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
+}
+
 function flagIta()
 {
     document.getElementById('ita').src='img/italia.png';
