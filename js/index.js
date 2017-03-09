@@ -8,23 +8,11 @@ function initialize() {
         mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR},
         styles:[
             {
-                "featureType": "administrative.province",
-                "elementType": "all",
+                "featureType": "road",
+                "elementType": "geometry.stroke",
                 "stylers": [
                     {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "lightness": 65
+                        "hue": "#007dff"
                     },
                     {
                         "visibility": "on"
@@ -32,76 +20,19 @@ function initialize() {
                 ]
             },
             {
-                "featureType": "poi",
-                "elementType": "all",
+                "featureType": "road",
+                "elementType": "labels",
                 "stylers": [
                     {
-                        "saturation": -100
+                        "hue": "#ff8800"
                     },
                     {
-                        "lightness": 51
-                    },
-                    {
-                        "visibility": "simplified"
+                        "visibility": "on"
                     }
                 ]
             },
             {
                 "featureType": "road.highway",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "visibility": "simplified"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.arterial",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "lightness": 30
-                    },
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.local",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "lightness": 40
-                    },
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "transit",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "visibility": "simplified"
-                    }
-                ]
-            },
-            {
-                "featureType": "transit",
                 "elementType": "geometry.fill",
                 "stylers": [
                     {
@@ -110,32 +41,14 @@ function initialize() {
                 ]
             },
             {
-                "featureType": "water",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "hue": "#ffff00"
-                    },
-                    {
-                        "lightness": -25
-                    },
-                    {
-                        "saturation": -97
-                    }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "labels",
+                "featureType": "road.highway",
+                "elementType": "geometry.stroke",
                 "stylers": [
                     {
                         "visibility": "on"
                     },
                     {
-                        "lightness": -25
-                    },
-                    {
-                        "saturation": -100
+                        "hue": "#edff00"
                     }
                 ]
             }

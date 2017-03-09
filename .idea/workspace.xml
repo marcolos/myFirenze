@@ -32,8 +32,23 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="255">
               <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+=======
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+            <state relative-caret-position="255">
+              <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+=======
+            <state relative-caret-position="495">
+              <caret line="33" column="7" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
+>>>>>>> Stashed changes
+=======
+            <state relative-caret-position="435">
+              <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
               <folding>
                 <element signature="n#style#0;n#p#0;n#button#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#button#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -246,12 +261,38 @@
       <workItem from="1488960058896" duration="322000" />
       <workItem from="1488961549041" duration="30000" />
       <workItem from="1488961593847" duration="3449000" />
+<<<<<<< Updated upstream
       <workItem from="1489050307780" duration="365000" />
+=======
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+      <workItem from="1489050307780" duration="365000" />
+=======
+      <workItem from="1488969577208" duration="94000" />
+      <workItem from="1488980169811" duration="381000" />
+      <workItem from="1489048430101" duration="879000" />
+>>>>>>> Stashed changes
+=======
+      <workItem from="1489050307780" duration="507000" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< Updated upstream
     <option name="totallyTimeSpent" value="11585000" />
+=======
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+    <option name="totallyTimeSpent" value="11585000" />
+=======
+    <option name="totallyTimeSpent" value="12574000" />
+>>>>>>> Stashed changes
+=======
+    <option name="totallyTimeSpent" value="11727000" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -516,8 +557,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="255">
           <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+=======
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+        <state relative-caret-position="255">
+          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+=======
+        <state relative-caret-position="495">
+          <caret line="33" column="7" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
+>>>>>>> Stashed changes
+=======
+        <state relative-caret-position="435">
+          <caret line="29" column="7" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
           <folding>
             <element signature="n#style#0;n#p#0;n#button#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#button#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
