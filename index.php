@@ -6,7 +6,7 @@ include("config.php");
 <head>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="js/index.js" rel="stylesheet" type="text/javascript"> </script>
-    <title>myFicddvvrenze</title>
+    <title>myFirenze</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAa6bQpbcPxZyWLjtqqOlBEO-tvfP_kYKM&callback=initMap">
