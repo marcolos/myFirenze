@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+
+
+
+<?php
+include("config.php");
+?>
+
 <html>
 <head>
     <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -12,11 +18,6 @@
 
 <body>
 
-
-
-
-
-
 <div id="container">
 
     <div id="logo">
@@ -27,9 +28,15 @@
     <img id="eng" src="img/ukbw.jpg" onclick="flagEng()">
 
 
-    <button id="help" onclick="alert('Hajy NEGRO')"><p style="font-size: 17px">AIUTO</p></button>
-    <button id="newItinerary" onclick="alert('SUCAAAAAAA')"><p style="font-size: 17px">NUOVO ITINERARIO</p></button>
+    <button id="help" onclick="alert('Choose your fucking way')"><p style="font-size: 17px">AIUTO</p></button>
+    <button id="newItinerary" onclick="alert('Olè')"><p style="font-size: 17px">NUOVO ITINERARIO</p></button>
+    <?php
+        $query = "SELECT * FROM poi";
+        $pointsOfInterest = mysqli_query($conn, $query);
+        while( $row = mysqli_fetch_row($pointsOfInterest)){
 
+        }
+    ?>
     <div id="map"></div>
 </div>
 
