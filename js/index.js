@@ -17,6 +17,12 @@ function initMap() {  // lancia la mappa
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                title: "Posizione corrente"
+            });
+
             infoWindow.setPosition(pos);
             infoWindow.setContent('Your Location');
             map.setCenter(pos);

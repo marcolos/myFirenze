@@ -4,7 +4,7 @@
 
 $lingua = $_GET['lingua'];
 
-if(isset($lingua) and $lingua == "it"){
+if(isset($lingua) and $lingua == "it") {
     $query = "SELECT name_it, lat, lng FROM poi";
 } else{
     $query = "SELECT name_en, lat, lng FROM poi";
