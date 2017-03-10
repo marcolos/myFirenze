@@ -1,13 +1,7 @@
-
-
-
-<?php
-include("config.php");
-?>
-
 <html>
 <head>
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
     <script src="js/index.js" rel="stylesheet" type="text/javascript"> </script>
     <title>myFirenze</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -30,13 +24,6 @@ include("config.php");
 
     <button id="help" onclick="alert('Choose your fucking way')"><p style="font-size: 17px">AIUTO</p></button>
     <button id="newItinerary" onclick="alert('Olè')"><p style="font-size: 17px">NUOVO ITINERARIO</p></button>
-    <?php
-        $query = "SELECT * FROM poi";
-        $pointsOfInterest = mysqli_query($conn, $query);
-        while( $row = mysqli_fetch_row($pointsOfInterest)){
-
-        }
-    ?>
     <div id="map"></div>
 </div>
 
