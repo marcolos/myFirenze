@@ -69,6 +69,8 @@ function inserisciMarkers() {
 
         var markers = JSON.parse(data); // markers ora è l'array uguale al php. dentro ci sono una lista di coordinate con un nome
         for (var idx in markers) { // inserisco nella mappa ognuno dei markers
+
+
             var marker = markers[idx]; // idx è l'indice nell'array
             var name = marker.name;
             var coordinates = marker['coordinate'];
