@@ -4,7 +4,7 @@ var lingua = "it";
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 43.88, lng: 11.55},
+        center: {lat: 43.7695604, lng: 11.25581360000001},
         zoom: 13
     });
 
