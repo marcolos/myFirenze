@@ -17,7 +17,7 @@ function initMap() {  // lancia la mappa
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            var image1='img/posizionecorrente.png';
+            var image1='img/poscorrente.png';
             var marker = new google.maps.Marker({
                 position: pos,
                 map: map,
