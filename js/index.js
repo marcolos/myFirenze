@@ -2,15 +2,15 @@ var map;
 
 var lingua = "it";
 
-function initMap() {
+function initMap() {  // lancia la mappa
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 43.7695604, lng: 11.25581360000001},
-        zoom: 13
+        zoom: 14
     });
 
-    var infoWindow = new google.maps.InfoWindow({map: map});
+    var infoWindow = new google.maps.InfoWindow({map: map}); 
 
-    // Try HTML5 geolocation.
+    // Indica la posizione corrente
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
