@@ -17,14 +17,13 @@ function initMap() {  // lancia la mappa
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+            var image1='img/posizionecorrente.png';
             var marker = new google.maps.Marker({
                 position: pos,
                 map: map,
-                title: "Posizione corrente"
+                title: "Posizione corrente",
+                icon: image1
             });
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Your Location');
             map.setCenter(pos);
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -66,8 +65,8 @@ function flagEng()
 
 function inserisciMarkers() {
     var url = "marker.php?lingua=" + lingua;
-
     $.get( url, function( data ) {
+
         var markers = JSON.parse(data); // markers ora è l'array uguale al php. dentro ci sono una lista di coordinate con un nome
         for (var idx in markers) { // inserisco nella mappa ognuno dei markers
             var marker = markers[idx]; // idx è l'indice nell'array
@@ -89,7 +88,6 @@ function inserisciMarkers() {
 $( document ).ready(function() {
 
     var url = "marker.php?lingua=" + lingua;
-
     $.get( url, function( data ) {
         var markers = JSON.parse(data); // markers ora è l'array uguale al php. dentro ci sono una lista di coordinate con un nome
         for (var idx in markers) { // inserisco nella mappa ognuno dei markers
