@@ -86,6 +86,7 @@ html, body
 
 #descriptor{
     z-index: 900;
+    background: #cdcace;
     background: rgba(255, 255, 255, 0.8);
     width: 700px !important;
     height: 400px !important;
