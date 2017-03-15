@@ -59,7 +59,7 @@ function flagEng() {
 
 function inserisciMarkers() {
     var url = "marker.php?lingua=" + lingua;
-    $.get( url, function( data ) {
+    $.get( url, function(data) {
         var markers = JSON.parse(data); // markers ora è l'array uguale al php. dentro ci sono una lista di coordinate con un nom //decodifica
         
         for (var index in markers) { // inserisco nella mappa ognuno dei markers
@@ -99,6 +99,11 @@ $(document).ready(function(){
  });
     inserisciMarkers();
 });
+
+
+
+
+
 /*
 function() {
 
