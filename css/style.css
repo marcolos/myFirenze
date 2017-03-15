@@ -103,13 +103,15 @@ html, body
 #descriptor p{
     font-family: "Georgia";
     overflow: scroll;
-    max-height: 200px;
+    max-height: 150px;
     background: rgba(200, 200, 200, 0.3);
     padding: 5px;
     border-radius: 5px;
 }
 #descriptor h1{
     font-family:"Lucida Grande";
+    font-size: larger;
+
 }
 #closeDescriptor{
     cursor: pointer;
@@ -142,5 +144,5 @@ html, body
 }
 
 #addItinerary{
-    background-color:grey;
+
 }
