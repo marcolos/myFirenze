@@ -86,11 +86,15 @@ html, body
 
 #descriptor{
     z-index: 900;
+<<<<<<< HEAD
+    background: #cdcace;
+=======
     background: rgba(255, 255, 255, 0.8);
-    border: 1px black solid;
+>>>>>>> origin/master
     width: 700px !important;
     height: 400px !important;
     margin-top: 10%;
+    margin-left: 22%;
     padding: 10px;
     position: fixed;
     display: none;
@@ -100,26 +104,50 @@ html, body
 }
 
 #descriptor p{
+    font-family: "Georgia";
     overflow: scroll;
     max-height: 200px;
     background: rgba(200, 200, 200, 0.3);
     padding: 5px;
     border-radius: 5px;
 }
-
+#descriptor h1{
+    font-family:"Lucida Grande";
+}
 #closeDescriptor{
     cursor: pointer;
+    width: 350px;
 }
+#descriptor .column img
+{
+   height: 90%;
+    width: 90%;
+    margin-left: 8%;
 
+<<<<<<< HEAD
+=======
 #descriptor img{
-    max-width: 100%
+    max-width: 100%;
+>>>>>>> origin/master
 }
 
 .container {
     display: flex; /* or inline-flex */
+    height: 385px;
+
 }
+
 .column{
+<<<<<<< HEAD
+
+    width: 350px;
+    height: 400px;
+=======
     max-width: 50%;
     padding: 5px;
+}
+>>>>>>> origin/master
 
+#addItinerary{
+    background-color:grey;
 }
