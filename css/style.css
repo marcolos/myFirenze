@@ -31,6 +31,7 @@ html, body
 }
 #ita
 {
+    cursor: pointer;
     position: fixed;
     z-index: 900;
     left: 92%;
@@ -40,6 +41,7 @@ html, body
 }
 #eng
 {
+    cursor: pointer;
     position: fixed;
     z-index: 900;
     left: 85%;
@@ -80,4 +82,44 @@ html, body
     -webkit-box-shadow: 2px 2px 3px #999;
     box-shadow: 2px 2px 2px #bbb;
     background-color: #3562cd;
+}
+
+#descriptor{
+    z-index: 900;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px black solid;
+    width: 700px !important;
+    height: 400px !important;
+    margin-top: 10%;
+    padding: 10px;
+    position: fixed;
+    display: none;
+    border-radius: 5px;
+    box-shadow: 5px 2px 2px #aaa;
+
+}
+
+#descriptor p{
+    overflow: scroll;
+    max-height: 200px;
+    background: rgba(200, 200, 200, 0.3);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#closeDescriptor{
+    cursor: pointer;
+}
+
+#descriptor img{
+    max-width: 100%
+}
+
+.container {
+    display: flex; /* or inline-flex */
+}
+.column{
+    max-width: 50%;
+    padding: 5px;
+
 }

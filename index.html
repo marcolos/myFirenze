@@ -2,7 +2,7 @@
 <head>
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-    <script src="js/index.js" rel="stylesheet" type="text/javascript"> </script>
+    <script src="js/main.js" rel="stylesheet" type="text/javascript"> </script>
     <title>myFirenze</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
@@ -12,20 +12,37 @@
 
 <body>
 
-<div id="container">
+    <div id="descriptor">
+        <div id="closeDescriptor">◉</div>  <!-- children 0 -->
 
-    <div id="logo">
-        <a href="http://www.comune.fi.it/export/sites/retecivica/index.html"><img src="img/logofirenze.png"></a>
+        <div class="container">  <!-- children 1 -->
+            <div class="column">  <!-- children 1.0-->
+                <h1> my title </h1> <!-- children 1.0.0-->
+                <p> mi paragraph </p> <!-- children 1.0.1 -->
+            </div>
+
+            <div class="column"> <!-- children 1.1-->
+                <img> <!-- children 1.1.0 -->
+            </div>
+
+        </div>
     </div>
 
-    <img id="ita" src="img/italia.png" onclick="flagIta()">
-    <img id="eng" src="img/ukbw.jpg" onclick="flagEng()">
+    <div id="container">
+
+        <div id="logo">
+            <a href="http://www.comune.fi.it/export/sites/retecivica/index.html"><img src="img/logofirenze.png"></a>
+        </div>
+
+        <img id="ita" src="img/italia.png" onclick="flagIta()">
+        <img id="eng" src="img/ukbw.jpg" onclick="flagEng()">
 
 
-    <button id="help" onclick="alert('Choose your fucking way')"><p style="font-size: 17px">AIUTO</p></button>
-    <button id="newItinerary" onclick="alert('Olè')"><p style="font-size: 17px">NUOVO ITINERARIO</p></button>
-    <div id="map"></div>
-</div>
+        <button id="help" onclick="alert('Choose your fucking way')"><p style="font-size: 17px">AIUTO</p></button>
+        <button id="newItinerary" onclick="alert('Olè')"><p style="font-size: 17px">NUOVO ITINERARIO</p></button>
+        <div id="map"></div>
+    </div>
+
 
 </body>
 
