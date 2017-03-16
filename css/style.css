@@ -65,6 +65,7 @@ html, body
     -webkit-box-shadow: 2px 2px 3px #999;
     box-shadow: 2px 2px 2px #bbb;
     background-color: #22a58e;
+    cursor: pointer;
 }
 #newItinerary
 {
@@ -82,6 +83,7 @@ html, body
     -webkit-box-shadow: 2px 2px 3px #999;
     box-shadow: 2px 2px 2px #bbb;
     background-color: #3562cd;
+    cursor: pointer;
 }
 
 #descriptor{
@@ -100,13 +102,12 @@ html, body
 
 }
 
-#descriptor p{
+#descriptor span{
     font-family: "Georgia";
     overflow: scroll;
     max-height: 150px;
-    background-color: #e5e2e6;
-    padding: 5px;
-    border-radius: 5px;
+    cursor: pointer;
+
 }
 #descriptor h1{
     font-family:"Lucida Grande";
@@ -114,8 +115,8 @@ html, body
 
 }
 #closeDescriptor{
-    cursor: pointer;
-    width: 350px;
+color: darkred;
+cursor: pointer;
 }
 #descriptor .column img {
     height: 90%;
@@ -135,35 +136,35 @@ html, body
 }
 
 .column{
-
-
     width: 350px;
     height: 400px;
     max-width: 50%;
     padding: 5px;
 }
 
-#addItinerary
-{
-    padding: 12px;
-    color:black;
+.addItinerary{
+    background-color: #4CAF50; /* Green */
     border: none;
-    background-color: lawngreen;
-    -webkit-border-radius: .4em;
-    -moz-border-radius: .4em;
-    border-radius: .4em;
-    -webkit-box-shadow: 2px 2px 3px #999;
-    box-shadow: 2px 2px 2px #bbb;
+    color: white;
+    padding: 11px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 150px;
 }
-#remItinerary
-{
-    padding: 12px;
-    color:black;
-    border: none;
-    background-color: crimson;
-    -webkit-border-radius: .4em;
-    -moz-border-radius: .4em;
-    border-radius: .4em;
-    -webkit-box-shadow: 2px 2px 3px #999;
-    box-shadow: 2px 2px 2px #bbb;
+
+.addItinerary {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.addItinerary:hover {
+    background-color: #4CAF50;
+    color: white;
 }

@@ -6,22 +6,23 @@ function initMap() {  // lancia la mappa
         center: {lat: 43.7695604, lng: 11.25581360000001}, //centrata inizialmente
         zoom: 14
     });
+
 }
     // Indica la posizione corrente
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
+            var posCorrente = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
             var image1='img/poscorrente.png';
             var marker = new google.maps.Marker({
-                position: pos,
+                position: posCorrente,
                 map: map,
                 title: "Posizione corrente",
                 icon: image1
             });
-            map.setCenter(pos);
+            map.setCenter(posCorrente);
          }, function() {
           handleLocationError(true, infoWindow, map.getCenter());
          });
@@ -45,6 +46,7 @@ function flagIta() {
 
     initMap();
     inserisciMarkers();
+
 }
 function flagEng() {
     document.getElementById('ita').src = 'img/italiabw.png';
@@ -54,6 +56,8 @@ function flagEng() {
 
     initMap();
     inserisciMarkers();
+    
+
 }
 
 
@@ -75,13 +79,13 @@ function inserisciMarkers() {
                 map: map,
                 title: name
             });
-            attachMessage(pointInterest, description,path);
+            attachMessage(pointInterest, description, path);
         }
     });
 }
 
 
-function attachMessage(marker, description,path) {
+function attachMessage(marker, description, path) {
     marker.addListener('click', function() {
         var popUp = document.getElementById('descriptor');
         popUp.setAttribute('style','display:block;');
@@ -90,13 +94,16 @@ function attachMessage(marker, description,path) {
         popUp.children[1].children[1].children[0].setAttribute('src','img/'+ path + '/01.jpg')
     });
 }
+
+
 $(document).ready(function(){
 
- var closer = document.getElementById('closeDescriptor');
- closer.addEventListener('click', function () {
-     var popUp = document.getElementById('descriptor');
-     popUp.setAttribute('style','display:none;');
- });
+        var closer = document.getElementById('closeDescriptor');
+        closer.addEventListener('click', function () {
+            var popUp = document.getElementById('descriptor');
+            popUp.setAttribute('style', 'display:none;');
+        });
+
     inserisciMarkers();
 });
 
@@ -105,34 +112,49 @@ $(document).ready(function(){
 
 
 /*
-function() {
+// get route from A to B
+calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
 
- var url = "marker.php?lingua=" + lingua;
- $.get( url, function( data ) {
- var markers = JSON.parse(data); // markers ora è l'array uguale al php. dentro ci sono una lista di coordinate con un nome
+}
 
- for (var idx in markers) { // inserisco nella mappa ognuno dei markers
- var marker = markers[idx]; // idx è l'indice nell'array
- var name = marker.name;
- var coordinates = marker['coordinate'];
- var lat = coordinates['lat'];
- var lng = coordinates['lng'];
- var description = marker.description;
- var infowindow = new google.maps.InfoWindow({
- content: description
- });
- var pointInterest = new google.maps.Marker({
- position: {lat:  parseFloat(lat), lng:  parseFloat(lng)},
- map: map,
- title: name
- });
- pointInterest.addListener('click', function() {
- infowindow.open(map,pointInterest);
- });
+directionsService = new google.maps.DirectionsService,
+    directionsDisplay = new google.maps.DirectionsRenderer({
+        map: map
+    })
+
+var addPlace = document.getElementById('addItinerary');
+addPlace.addEventListener('click',function(){
+    var posCorrente = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+    };
+    var pointB = marker['coordinate'];
+
+    calculateAndDisplayRoute(directionsService, directionsDisplay, posCorrente, pointB);
+
+}
 
 
+function calculateAndDisplayRoute(directionsService, directionsDisplay, posCorrente, pointB) {
+    directionsService.route({
+        origin: posCorrente,
+        destination: pointB,
+        avoidTolls: true,
+        avoidHighways: false,
+        travelMode: google.maps.TravelMode.DRIVING
+    }, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
 
- }
- });
+} */
 
-*/
+
+
+
+
+
+
