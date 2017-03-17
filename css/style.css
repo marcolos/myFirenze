@@ -135,7 +135,8 @@ cursor: pointer;
 
 }
 
-.column{
+.column
+{
     width: 350px;
     height: 400px;
     max-width: 50%;
@@ -196,28 +197,28 @@ cursor: pointer;
     background-color: #d51912;
     color: white;
 }
-
-.column #prevNext {
-position: relative;
-margin-top: -58%;
-} 
-
-.prev,.next  {
-     cursor: pointer;
-     padding: 4%;
-     margin-left: 8%;
-     color: white;
-     font-weight: bold;
-     font-size: 20px;
-     transition: 0.6s ease;
-     border-radius: 0 4px 4px 0;
- }
-
-.next{
-border-radius: 4px 0 0 4px;
-margin-left: 67.5%;
-}  
-
-.prev:hover,.next:hover {
-     background-color: rgba(0, 0, 0, 0.8);
- }
+.column #prevNext
+{
+    position: relative;
+    margin-top: -58%;
+}
+.prev , .next
+{
+    cursor: pointer;
+    padding: 4%;
+    margin-left: 7%;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 4px 4px 0;
+}
+.next
+{
+    border-radius: 4px 0 0 4px;
+    margin-left: 67.5%;
+}
+.prev:hover , .next:hover
+{
+    background-color: black;
+}

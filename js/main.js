@@ -87,7 +87,6 @@ function inserisciMarkers() {
     });
 }
 
-
 function attachMessage(marker, description, path) {
     marker.addListener('click', function() {
         var popUp = document.getElementById('descriptor');
