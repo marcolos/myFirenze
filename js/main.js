@@ -58,6 +58,7 @@ function flagEng() {
 
 
 function inserisciMarkers() {
+
     var url = "marker.php?lingua=" + lingua;
     $.get( url, function(data) {
         var markers = JSON.parse(data); // markers ora è l'array uguale al php. dentro ci sono una lista di coordinate con un nom //decodifica
@@ -75,19 +76,20 @@ function inserisciMarkers() {
                 map: map,
                 title: name
             });
-            attachMessage(pointInterest, description,path);
+            attachMessage(pointInterest, description, path);
         }
     });
 }
 
 
-function attachMessage(marker, description,path) {
+function attachMessage(marker, description, path)
+{
     marker.addListener('click', function() {
         var popUp = document.getElementById('descriptor');
         popUp.setAttribute('style','display:block;');
         popUp.children[1].children[0].children[0].textContent = marker.title;
         popUp.children[1].children[0].children[1].textContent = description;
-        popUp.children[1].children[1].children[0].setAttribute('src','img/'+ path + '/01.jpg')
+        popUp.children[1].children[1].children[0].setAttribute('src','img/'+ path + '/01.jpg');
     });
 }
 $(document).ready(function(){
