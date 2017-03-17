@@ -47,8 +47,8 @@ function flagIta() {
 
     initMap();
     inserisciMarkers();
-
 }
+
 function flagEng() {
     var popUp = document.getElementById('descriptor');
     popUp.setAttribute('style', 'display:none;');
@@ -59,7 +59,12 @@ function flagEng() {
 
     initMap();
     inserisciMarkers();
-    
+}
+
+function newItinerary(){
+    document.getElementById('newItinerary');
+    var popUp = document.getElementById('descriptor');
+    popUp.setAttribute('style', 'display:none;');
 
 }
 
