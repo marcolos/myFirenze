@@ -6,7 +6,6 @@ function initMap() {  // lancia la mappa
         center: {lat: 43.7695604, lng: 11.25581360000001}, //centrata inizialmente
         zoom: 14
     });
-
 }
     // Indica la posizione corrente
     if (navigator.geolocation) {
@@ -39,6 +38,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 function flagIta() {
+    var popUp = document.getElementById('descriptor');
+    popUp.setAttribute('style', 'display:none;');
     document.getElementById('ita').src='img/italia.png';
     document.getElementById('eng').src='img/ukbw.jpg';
 
@@ -49,6 +50,8 @@ function flagIta() {
 
 }
 function flagEng() {
+    var popUp = document.getElementById('descriptor');
+    popUp.setAttribute('style', 'display:none;');
     document.getElementById('ita').src = 'img/italiabw.png';
     document.getElementById('eng').src = 'img/uk.jpg';
 
@@ -111,18 +114,11 @@ $(document).ready(function(){
 
 
 
-/*
-// get route from A to B
-calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
 
-}
 
-directionsService = new google.maps.DirectionsService,
-    directionsDisplay = new google.maps.DirectionsRenderer({
-        map: map
-    })
 
-var addPlace = document.getElementById('addItinerary');
+
+/*var addPlace = document.getElementById('addItinerary');
 addPlace.addEventListener('click',function(){
     var posCorrente = {
         lat: position.coords.latitude,
@@ -150,7 +146,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, posCorre
         }
     });
 
-} */
+}*/
 
 
 
