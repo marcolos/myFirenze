@@ -86,6 +86,7 @@ html, body
 
 #descriptor{
     z-index: 900;
+    background: #cdcace;
     background: rgba(255, 255, 255, 0.8);
     width: 700px !important;
     height: 400px !important;
@@ -124,7 +125,6 @@ html, body
 
 #descriptor img{
     max-width: 100%;
-    position: relative;
 
 }
 
@@ -141,7 +141,6 @@ html, body
     height: 400px;
     max-width: 50%;
     padding: 5px;
-
 }
 
 #addItinerary
@@ -149,7 +148,7 @@ html, body
     padding: 12px;
     color:black;
     border: none;
-    background-color: #4fcd3e;
+    background-color: lawngreen;
     -webkit-border-radius: .4em;
     -moz-border-radius: .4em;
     border-radius: .4em;
@@ -158,43 +157,13 @@ html, body
 }
 #remItinerary
 {
-    margin-left: 14%;
     padding: 12px;
     color:black;
     border: none;
-    background-color: #be1f0b;
+    background-color: crimson;
     -webkit-border-radius: .4em;
     -moz-border-radius: .4em;
     border-radius: .4em;
     -webkit-box-shadow: 2px 2px 3px #999;
     box-shadow: 2px 2px 2px #bbb;
-}
-.column #prevNext
-{
-
-
-   position: relative;
-    margin-top: -58%;
-
-}
-.prev , .next
-{
-    cursor: pointer;
-
-    padding: 4%;
-    margin-left: 8%;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    transition: 0.6s ease;
-    border-radius: 0 4px 4px 0;
-}
-
-.next {
-    border-radius: 4px 0 0 4px;
-    margin-left: 67.5%;
-}
-
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
 }
