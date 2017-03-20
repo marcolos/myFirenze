@@ -61,6 +61,16 @@ function flagEng() {
     inserisciMarkers();
 }
 
+function helpMessage(){
+    var helpMe=document.getElementById('help');
+    helpMe.addListener('click',function(){
+    helpMe.setAttribute('style','display:block;');
+    helpMe.firstElementChild.textContent='AIUTO';
+
+    });
+}
+
+
 function newItinerary(){
     document.getElementById('newItinerary');
     var popUp = document.getElementById('descriptor');
@@ -92,13 +102,21 @@ function inserisciMarkers() {
     });
 }
 
+// CREO LA FINESTRELLA
 function attachMessage(marker, description, path) {
+    //Quando premo sul marker
     marker.addListener('click', function() {
         var popUp = document.getElementById('descriptor');
         popUp.setAttribute('style','display:block;');
         popUp.children[1].children[0].children[0].textContent = marker.title;
         popUp.children[1].children[0].children[1].textContent = description;
-        popUp.children[1].children[1].children[0].setAttribute('src','img/'+ path + '/01.jpg')
+        popUp.children[1].children[1].children[0].setAttribute('src','img/'+ path + '/01.jpg');
+
+        var prev = document.getElementById("prev");
+        prev.setAttribute('path', path);
+        prev.setAttribute('style','display:none;');
+        prev.setAttribute('currentImg', '01');
+        next.setAttribute('style','display:inline-block;');
     });
 }
 
@@ -114,6 +132,69 @@ $(document).ready(function(){
     inserisciMarkers();
 });
 
+
+function slideShows(index)
+{
+    var prev = document.getElementById('prev');
+    var next = document.getElementById('next');
+    var folderPath = prev.getAttribute('path');
+    var currentImg = prev.getAttribute("currentImg");
+    var image = document.getElementById('previewImage');
+    var countImg=parseInt(currentImg)+index;
+    var path;
+
+        if(countImg > 9)
+        {
+            currentImg = countImg;
+        }
+        else
+        {
+            currentImg = "0"+ countImg;
+        }
+
+        path = "./img/"+folderPath+"/"+currentImg+".jpg";
+
+        if(UrlExists(path)){
+            image.setAttribute('src', path);
+            prev.setAttribute('currentImg', currentImg);
+        }
+        if(index==1)
+        {
+            prev.setAttribute('style','display:inline-block;');
+            if(countImg > 9)
+            {
+                currentImg = countImg;
+            }
+            else
+            {
+                currentImg = "0"+ countImg;
+            }
+            path = "./img/"+folderPath+"/"+currentImg+".jpg";
+            if(!UrlExists(path)){//next
+                next.setAttribute('style','display:none;');
+            }
+        }
+        if(index==-1)
+        {
+            next.setAttribute('style', 'display:inline-block;');
+            if(countImg > 9)
+            {
+                currentImg = countImg;
+            }
+            else
+            {
+                currentImg = "0"+ countImg;
+            }
+            path = "./img/"+folderPath+"/"+currentImg+".jpg";
+            if(!UrlExists(path)){//next
+                prev.setAttribute('style','display:none;');
+            }
+
+        }
+
+
+
+}
 
 
 

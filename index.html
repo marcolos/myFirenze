@@ -23,10 +23,10 @@
                 <button class="removeItinerary" onclick="alert(calculateAndDisplayRoute())"><span style="color:black">Rimuovi dall'itinerario -</span></button>
             </div>
             <div class="column"> <!-- children 1.1-->
-                <img> <!-- children 1.1.0 -->
+                <img id="previewImage"> <!-- children 1.1.0 -->
                 <div id="prevNext"> 
-                    <a class="prev" onclick="slideShows(-1)" >&#10094;</a> 
-                    <a class="next" onclick="slideShows(1)">&#10095;</a> 
+                    <a id="prev" onclick="slideShows(-1)" >&#10094;</a> 
+                    <a id="next" onclick="slideShows(1)">&#10095;</a> 
                 </div>
             </div>
 
@@ -39,10 +39,24 @@
         </div>
         <img id="ita" src="img/italia.png" onclick="flagIta()">
         <img id="eng" src="img/ukbw.jpg" onclick="flagEng()">
-        <button id="help" onclick="alert('Choose your fucking way')"><p style="font-size: 17px">AIUTO</p></button>
+        <button id="help" onclick="helpMessage()"><p style="font-size: 17px">AIUTO</p></button>
         <button id="newItinerary" onclick="initMap(),inserisciMarkers(),newItinerary()"><p style="font-size: 17px">NUOVO ITINERARIO</p></button>
         <div id="map"></div>
     </div>
 </body>
 
 </html>
+
+
+<script>
+
+    function UrlExists(url)
+    {
+        var http = new XMLHttpRequest();
+        http.open('HEAD', url, false);
+        http.send();
+        return http.status != 404;
+    }
+
+
+</script>

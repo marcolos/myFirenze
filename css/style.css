@@ -201,24 +201,38 @@ cursor: pointer;
 {
     position: relative;
     margin-top: -58%;
+    margin-left: 8%;
+    width: 90%;
+    max-height: 12%;
+
 }
-.prev , .next
+#prev
 {
+    display:none;
     cursor: pointer;
     padding: 4%;
-    margin-left: 7%;
     color: white;
     font-weight: bold;
     font-size: 20px;
     transition: 0.6s ease;
     border-radius: 0 4px 4px 0;
+    margin-left:0px;
+    float: left;
+
 }
-.next
+#next
 {
+    display: inline-block;
+    cursor: pointer;
+    padding: 4%;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
     border-radius: 4px 0 0 4px;
-    margin-left: 67.5%;
+float: right;
 }
-.prev:hover , .next:hover
+#prev:hover , #next:hover
 {
     background-color: black;
 }
