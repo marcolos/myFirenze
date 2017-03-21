@@ -110,6 +110,9 @@ function inserisciMarkers() {
 // CREO LA FINESTRELLA
 function attachMessage(marker, description, path) {
     //Quando premo sul marker
+    var prev = document.getElementById('prev');
+    var next = document.getElementById('next');
+
     marker.addListener('click', function() {
         var popUp = document.getElementById('descriptor');
         popUp.setAttribute('style','display:block;');
@@ -117,12 +120,20 @@ function attachMessage(marker, description, path) {
         popUp.children[1].children[0].children[1].textContent = description;
         popUp.children[1].children[1].children[0].setAttribute('src','img/'+ path + '/01.jpg');
 
-        var prev = document.getElementById("prev");
         prev.setAttribute('path', path);
         prev.setAttribute('style','display:none;');
         prev.setAttribute('currentImg', '01');
         next.setAttribute('style','display:inline-block;');
+
+        if(!UrlExists("./img/"+path+"/02.jpg"))
+        {
+            next.setAttribute('style','display:none;');
+            prev.setAttribute('style','display:none;');
+        }
     });
+
+
+
 }
 
 
@@ -170,11 +181,8 @@ function slideShows(index)
             image.setAttribute('src', path);
             prev.setAttribute('currentImg', currentImg);
         }
-        else
-        {
-            next.setAttribute('style','display:none;');
-            prev.setAttribute('style','display:none;');
-        }
+
+        countImg=parseInt(currentImg)+index;
         if(index==1)
         {
             prev.setAttribute('style','display:inline-block;');
