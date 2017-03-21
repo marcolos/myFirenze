@@ -160,13 +160,15 @@ function slideShows(index)
 
         path = "./img/"+folderPath+"/"+currentImg+".jpg";
 
-        if(UrlExists(path)){
+        if(UrlExists(path))
+        {
             image.setAttribute('src', path);
             prev.setAttribute('currentImg', currentImg);
         }
         if(index==1)
         {
             prev.setAttribute('style','display:inline-block;');
+            countImg=parseInt(currentImg)+index;
             if(countImg > 9)
             {
                 currentImg = countImg;
@@ -183,6 +185,7 @@ function slideShows(index)
         if(index==-1)
         {
             next.setAttribute('style', 'display:inline-block;');
+            countImg=parseInt(currentImg)+index;
             if(countImg > 9)
             {
                 currentImg = countImg;
