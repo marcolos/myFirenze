@@ -6,6 +6,8 @@ function initMap() {  // lancia la mappa
         center: {lat: 43.7695604, lng: 11.25581360000001}, //centrata inizialmente
         zoom: 14
     });
+    changeLang();
+
 }
     // Indica la posizione corrente
     if (navigator.geolocation) {
@@ -40,13 +42,15 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 function flagIta() {
     var popUp = document.getElementById('descriptor');
     popUp.setAttribute('style', 'display:none;');
-    document.getElementById('ita').src='img/italia.png';
-    document.getElementById('eng').src='img/ukbw.jpg';
+    document.getElementById('ita').src = 'img/italia.png';
+    document.getElementById('eng').src = 'img/ukbw.jpg';
 
     lingua = "it";
 
     initMap();
     inserisciMarkers();
+    changeLang();
+
 }
 
 function flagEng() {
@@ -59,6 +63,8 @@ function flagEng() {
 
     initMap();
     inserisciMarkers();
+    changeLang();
+
 }
 
 function helpMessage(){
@@ -75,7 +81,6 @@ function newItinerary(){
     document.getElementById('newItinerary');
     var popUp = document.getElementById('descriptor');
     popUp.setAttribute('style', 'display:none;');
-
 }
 
 
@@ -201,14 +206,47 @@ function slideShows(index)
 
         }
 
+}
 
+function changeLang(){
+    var itinerary = document.getElementById('descriptor');
+    var helpsMe = document.getElementById('help');
+    var nwItinerary = document.getElementById('newItinerary');
+    helpsMe.setAttribute('style', 'font-size:17px; font-style:bold;');
+    nwItinerary.setAttribute('style', 'font-size:17px; font-style:bold;');
+
+    if (lingua=='it'){
+        itinerary.children[1].children[0].children[2].textContent="Aggiungi all'itinerario +";
+        itinerary.children[1].children[0].children[3].textContent="Rimuovi dall'itineraro -";
+        helpsMe.textContent= "AIUTO";
+        nwItinerary.textContent = "NUOVO ITINERARIO";
+    }
+    else{
+        itinerary.children[1].children[0].children[2].textContent="Add to itinerary +";
+        itinerary.children[1].children[0].children[3].textContent="Remove from itinerary -";
+        helpsMe.textContent= "HELP";
+        nwItinerary.textContent= "NEW ITINERARY";
+
+    }
 
 }
 
+/*function changeLang1(){
 
+    var helpsMe = document.getElementById('help');
+    var nwItinerary = document.getElementById('newItinerary');
+    helpsMe.setAttribute('style', 'font-size:17px; font-style:bold;');
+    nwItinerary.setAttribute('style', 'font-size:17px; font-style:bold;');
+    if (lingua=='it'){
+        helpsMe.textContent= "AIUTO";
+        nwItinerary.textContent = "NUOVO ITINERARIO";
+    }
+    else{
+        helpsMe.textContent= "HELP";
+        nwItinerary.textContent= "NEW ITINERARY";
+    }
 
-
-
+}*/
 
 
 

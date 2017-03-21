@@ -19,8 +19,8 @@
             <div class="column">  <!-- children 1.0-->
                 <h1> my title </h1> <!-- children 1.0.0-->
                 <p> my paragraph </p> <!-- children 1.0.1 -->
-                <button class="addItinerary" onclick="alert(calculateAndDisplayRoute())"><span style="color:black">Aggiungi all'itinerario ✚</span></button> <!--children 1.0.2-->
-                <button class="removeItinerary" onclick="alert(calculateAndDisplayRoute())"><span style="color:black">Rimuovi dall'itinerario -</span></button>
+                <button class="addItinerary" onclick="alert(calculateAndDisplayRoute())"></button> <!--children 1.0.2-->
+                <button class="removeItinerary" onclick="alert(calculateAndDisplayRoute())"></button> <!--children 1.0.3-->
             </div>
             <div class="column"> <!-- children 1.1-->
                 <img id="previewImage"> <!-- children 1.1.0 -->
@@ -39,8 +39,8 @@
         </div>
         <img id="ita" src="img/italia.png" onclick="flagIta()">
         <img id="eng" src="img/ukbw.jpg" onclick="flagEng()">
-        <button id="help" onclick="helpMessage()"><p style="font-size: 17px">AIUTO</p></button>
-        <button id="newItinerary" onclick="initMap(),inserisciMarkers(),newItinerary()"><p style="font-size: 17px">NUOVO ITINERARIO</p></button>
+        <button id="help" onclick="helpMessage()"></button>
+        <button id="newItinerary" onclick="initMap(),inserisciMarkers(),newItinerary()"></button>
         <div id="map"></div>
     </div>
 </body>
