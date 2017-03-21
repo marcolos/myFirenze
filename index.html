@@ -13,24 +13,27 @@
 <body>
     <div id="descriptor">
 
-        <div id="closeDescriptor">✖</div>  <!-- children 0 -->
+        <div id="closeDescriptor" onmousedown="hidepopup()">✖</div>  <!-- children 0 -->
 
-        <div class="container">  <!-- children 1 -->
-            <div class="column">  <!-- children 1.0-->
+        <div class="container" id="popupmarker" >  <!-- children 1 -->
+            <div class="column" id="column1">  <!-- children 1.0-->
                 <h1> my title </h1> <!-- children 1.0.0-->
                 <p> my paragraph </p> <!-- children 1.0.1 -->
                 <button class="addItinerary" onclick="alert(calculateAndDisplayRoute())"></button> <!--children 1.0.2-->
                 <button class="removeItinerary" onclick="alert(calculateAndDisplayRoute())"></button> <!--children 1.0.3-->
             </div>
-            <div class="column"> <!-- children 1.1-->
+            <div class="column" id="column2"> <!-- children 1.1-->
                 <img id="previewImage"> <!-- children 1.1.0 -->
                 <div id="prevNext"> 
                     <a id="prev" onclick="slideShows(-1)" >&#10094;</a> 
                     <a id="next" onclick="slideShows(1)">&#10095;</a> 
                 </div>
             </div>
-
+            <div id="helpcontainer">
+                    scrivi stà parte hajy!
+            </div>
         </div>
+
     </div>
 
     <div id="container">
@@ -41,7 +44,18 @@
         <img id="eng" src="img/ukbw.jpg" onclick="flagEng()">
         <button id="help" onclick="helpMessage()"></button>
         <button id="newItinerary" onclick="initMap(),inserisciMarkers(),newItinerary()"></button>
-        <div id="map"></div>
+        <div id="favorites">
+            <p style="margin-left: 35%; font-size: 20px; padding:0;">Preferiti</p>
+            <ul id="menufavorites">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+        </div>
+        <div id="map" onmousedown="hidepopup()"></div>
     </div>
 </body>
 

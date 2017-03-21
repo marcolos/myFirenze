@@ -68,12 +68,14 @@ function flagEng() {
 }
 
 function helpMessage(){
-    var helpMe=document.getElementById('help');
-    helpMe.addListener('click',function(){
-    helpMe.setAttribute('style','display:block;');
-    helpMe.firstElementChild.textContent='AIUTO';
-
-    });
+    var helpbutton = document.getElementById("descriptor");
+    var content1=document.getElementById("column1");
+    var content2=document.getElementById("column2");
+    var content3=document.getElementById("helpcontainer");
+    helpbutton.setAttribute('style', 'display:block;');
+    content1.setAttribute('style', 'display:none;');
+    content2.setAttribute('style', 'display:none;');
+    content3.setAttribute('style', 'display:block;');
 }
 
 
@@ -112,8 +114,11 @@ function attachMessage(marker, description, path) {
     //Quando premo sul marker
     var prev = document.getElementById('prev');
     var next = document.getElementById('next');
-
+    var content1=document.getElementById("column1");
+    var content2=document.getElementById("column2");
+    var content3=document.getElementById("helpcontainer");
     marker.addListener('click', function() {
+
         var popUp = document.getElementById('descriptor');
         popUp.setAttribute('style','display:block;');
         popUp.children[1].children[0].children[0].textContent = marker.title;
@@ -130,6 +135,9 @@ function attachMessage(marker, description, path) {
             next.setAttribute('style','display:none;');
             prev.setAttribute('style','display:none;');
         }
+        content1.setAttribute('style', 'display:block;');
+        content2.setAttribute('style', 'display:block;');
+        content3.setAttribute('style', 'display:none;');
     });
 
 
@@ -138,13 +146,6 @@ function attachMessage(marker, description, path) {
 
 
 $(document).ready(function(){
-
-        var closer = document.getElementById('closeDescriptor');
-        closer.addEventListener('click', function () {
-            var popUp = document.getElementById('descriptor');
-            popUp.setAttribute('style', 'display:none;');
-        });
-
     inserisciMarkers();
 });
 
@@ -240,6 +241,10 @@ function changeLang(){
 
     }
 
+}
+function hidepopup()
+{
+    document.getElementById('descriptor').setAttribute('style', 'display:none');
 }
 
 /*function changeLang1(){
