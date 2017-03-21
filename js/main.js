@@ -132,7 +132,13 @@ $(document).ready(function(){
     inserisciMarkers();
 });
 
-
+function UrlExists(url)
+{
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status != 404;
+}
 function slideShows(index)
 {
     var prev = document.getElementById('prev');
