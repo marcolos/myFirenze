@@ -170,10 +170,14 @@ function slideShows(index)
             image.setAttribute('src', path);
             prev.setAttribute('currentImg', currentImg);
         }
+        else
+        {
+            next.setAttribute('style','display:none;');
+            prev.setAttribute('style','display:none;');
+        }
         if(index==1)
         {
             prev.setAttribute('style','display:inline-block;');
-            countImg=parseInt(currentImg)+index;
             if(countImg > 9)
             {
                 currentImg = countImg;
@@ -190,7 +194,6 @@ function slideShows(index)
         if(index==-1)
         {
             next.setAttribute('style', 'display:inline-block;');
-            countImg=parseInt(currentImg)+index;
             if(countImg > 9)
             {
                 currentImg = countImg;
