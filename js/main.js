@@ -108,7 +108,49 @@ function inserisciMarkers() {
         }
     });
 }
+function favorite(index)
+{
+    var url = "favorites.php?lingua=" + lingua;
+    $.get( url, function(data) {
+        var markers = JSON.parse(data);
 
+        var marker = markers[index];
+        var name = marker.name;
+        var description = marker.description;
+        var path = marker.path;
+        var pointInterest = new google.maps.Marker({
+            map: map,
+            title: name
+        });
+        var prev = document.getElementById('prev');
+        var next = document.getElementById('next');
+        var content1=document.getElementById("column1");
+        var content2=document.getElementById("column2");
+        var content3=document.getElementById("helpcontainer");
+
+
+        var popUp = document.getElementById('descriptor');
+        popUp.setAttribute('style','display:block;');
+        popUp.children[1].children[0].children[0].textContent = pointInterest.title;
+        popUp.children[1].children[0].children[1].textContent = description;
+        popUp.children[1].children[1].children[0].setAttribute('src','img/'+ path + '/01.jpg');
+
+        prev.setAttribute('path', path);
+        prev.setAttribute('style','display:none;');
+        prev.setAttribute('currentImg', '01');
+        next.setAttribute('style','display:inline-block;');
+
+        if(!UrlExists("./img/"+path+"/02.jpg"))
+        {
+            next.setAttribute('style','display:none;');
+            prev.setAttribute('style','display:none;');
+        }
+        content1.setAttribute('style', 'display:block;');
+        content2.setAttribute('style', 'display:block;');
+        content3.setAttribute('style', 'display:none;');
+
+    });
+}
 // CREO LA FINESTRELLA
 function attachMessage(marker, description, path) {
     //Quando premo sul marker

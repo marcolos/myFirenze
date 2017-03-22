@@ -45,13 +45,16 @@
         <button id="help" onclick="helpMessage()"></button>
         <button id="newItinerary" onclick="initMap(),inserisciMarkers(),newItinerary()"></button>
         <div id="favorites">
-            <p style="margin-left: 35%; font-size: 20px; padding:0;">Preferiti</p>
+            <p id="best">Preferiti</p>
             <ul id="menufavorites">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Contact</a></li>
+                <li onclick="favorite('0')"><a>Basilica e Museo di Santa Croce</a></li>
+                <li onclick="favorite('1')"><a>Basilica di S.Lorenzo</a></li>
+                <li onclick="favorite('2')"><a>Campanile di Giotto</a></li>
+                <li onclick="favorite('3')"><a>Cappelle Medicee</a></li>
+                <li onclick="favorite('4')"><a>Casa di Dante</a></li>
+                <li onclick="favorite('5')"><a>Chiesa di Santa Trinita</a></li>
+                <li onclick="favorite('6')"><a>Cimitero degli Inglesi</a></li>
+                <li onclick="favorite('7')"><a>Cupola del Brunelleschi</a></li>
             </ul>
 
         </div>
