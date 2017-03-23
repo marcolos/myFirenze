@@ -1,8 +1,8 @@
 html, body
 {
-    background-color: royalblue;
     height: 100%;
     width:100%;
+    margin: 0;
 }
 #container
 {
@@ -11,9 +11,6 @@ html, body
 }
 #map
 {
-    background-position: center;
-    margin-top: -0.6%;
-    margin-left: -0.6%;
     height: 100%;
     width: 100%;
     z-index: 1;
@@ -26,28 +23,28 @@ html, body
 }
 #logo a img
 {
-    width: 150px;
-    height: 80px;
+    width: 24%;
+    height: 12%;
 }
 #ita
 {
     cursor: pointer;
     position: fixed;
     z-index: 900;
-    left: 92%;
-    margin-top: 1.8%;
-    width: 65px;
-    height: 35px;
+    left: 91.5%;
+    margin-top: 2%;
+    width: 5.5%;
+    height: 5.5%;
 }
 #eng
 {
     cursor: pointer;
     position: fixed;
     z-index: 900;
-    left: 85%;
-    margin-top: 1.8%;
-    width: 65px;
-    height: 35px;
+    left: 83.5%;
+    margin-top: 2%;
+    width: 5.5%;
+    height: 5.5%;
 }
 #help
 {
@@ -253,16 +250,16 @@ float: right;
 }
 #favorites
 {
-    margin-top: 10%;
-    margin-left: 81%;
+    margin-top: 8%;
+    margin-left: 82.3%;
     position: fixed;
     z-index: 900;
     width: 16%;
     height: 30%;
     background: #cdcace;
     background: rgba(255, 255, 255, 0.8);
-    border-radius: 3px;
-    box-shadow: 3px 1px 1px #aaa;
+    border-radius: 5px;
+    box-shadow: 5px 2px 2px #aaa;
 }
 #menufavorites
 {
@@ -282,7 +279,7 @@ float: right;
     width: 100%;
     height: 15.8%;
     margin: 2px 0;
-    border-radius: 3px 3px 3px 3px;
+    border-radius: 5px 5px 5px 5px;
 
 }
 #menufavorites li a

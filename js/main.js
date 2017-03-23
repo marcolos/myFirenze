@@ -263,25 +263,57 @@ function slideShows(index)
 }
 
 function changeLang(){
-    var itinerary = document.getElementById('descriptor');
-    var helpsMe = document.getElementById('help');
-    var nwItinerary = document.getElementById('newItinerary');
-    helpsMe.setAttribute('style', 'font-size:17px; font-style:bold;');
-    nwItinerary.setAttribute('style', 'font-size:17px; font-style:bold;');
+    var url = "favorites.php?lingua=" + lingua;
+    $.get( url, function(data)
+    {
+        var markers = JSON.parse(data);
+        var itinerary = document.getElementById('descriptor');
+        var helpsMe = document.getElementById('help');
+        var nwItinerary = document.getElementById('newItinerary');
+        var favorite = document.getElementById('best');
+        var fav1 = document.getElementById('fav1');
+        var fav2 = document.getElementById('fav2');
+        var fav3 = document.getElementById('fav3');
+        var fav4 = document.getElementById('fav4');
+        var fav5 = document.getElementById('fav5');
+        var fav6 = document.getElementById('fav6');
+        var fav7 = document.getElementById('fav7');
+        var fav8 = document.getElementById('fav8');
+        helpsMe.setAttribute('style', 'font-size:17px; font-style:bold;');
+        nwItinerary.setAttribute('style', 'font-size:17px; font-style:bold;');
 
-    if (lingua=='it'){
-        itinerary.children[1].children[0].children[2].textContent="Aggiungi all'itinerario +";
-        itinerary.children[1].children[0].children[3].textContent="Rimuovi dall'itineraro -";
-        helpsMe.textContent= "AIUTO";
-        nwItinerary.textContent = "NUOVO ITINERARIO";
-    }
-    else{
-        itinerary.children[1].children[0].children[2].textContent="Add to itinerary +";
-        itinerary.children[1].children[0].children[3].textContent="Remove from itinerary -";
-        helpsMe.textContent= "HELP";
-        nwItinerary.textContent= "NEW ITINERARY";
+        if (lingua == 'it') {
+            itinerary.children[1].children[0].children[2].textContent = "Aggiungi all'itinerario +";
+            itinerary.children[1].children[0].children[3].textContent = "Rimuovi dall'itineraro -";
+            helpsMe.textContent = "AIUTO";
+            nwItinerary.textContent = "NUOVO ITINERARIO";
+            favorite.textContent = "Preferiti";
+            fav1.textContent=markers[0].name;
+            fav2.textContent=markers[1].name;
+            fav3.textContent=markers[2].name;
+            fav4.textContent=markers[3].name;
+            fav5.textContent=markers[4].name;
+            fav6.textContent=markers[5].name;
+            fav7.textContent=markers[6].name;
+            fav8.textContent=markers[7].name;
+        }
+        else {
+            itinerary.children[1].children[0].children[2].textContent = "Add to itinerary +";
+            itinerary.children[1].children[0].children[3].textContent = "Remove from itinerary -";
+            helpsMe.textContent = "HELP";
+            nwItinerary.textContent = "NEW ITINERARY";
+            favorite.textContent = "Favorites";
+            fav1.textContent=markers[0].name;
+            fav2.textContent=markers[1].name;
+            fav3.textContent=markers[2].name;
+            fav4.textContent=markers[3].name;
+            fav5.textContent=markers[4].name;
+            fav6.textContent=markers[5].name;
+            fav7.textContent=markers[6].name;
+            fav8.textContent=markers[7].name;
 
-    }
+        }
+    });
 
 }
 function hidepopup()
