@@ -83,6 +83,8 @@ html, body
     cursor: pointer;
 }
 
+
+
 #descriptor{
     z-index: 900;
     background: #cdcace;
@@ -244,14 +246,18 @@ float: right;
 }
 #helpcontainer
 {
-    background-color: #999999;
     width: 700px !important;
     height: 385px !important;
 }
 #favorites
 {
+<<<<<<< Updated upstream
     margin-top: 8%;
     margin-left: 82.3%;
+=======
+    margin-top: 30%;
+    margin-left: 81%;
+>>>>>>> Stashed changes
     position: fixed;
     z-index: 900;
     width: 16%;
@@ -270,8 +276,6 @@ float: right;
     list-style: none;
     overflow-y: scroll;
     max-height: 71%;
-
-
 }
 #menufavorites li
 {
