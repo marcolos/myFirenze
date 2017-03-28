@@ -251,13 +251,8 @@ float: right;
 }
 #favorites
 {
-<<<<<<< Updated upstream
-    margin-top: 8%;
-    margin-left: 82.3%;
-=======
-    margin-top: 30%;
-    margin-left: 81%;
->>>>>>> Stashed changes
+    margin-top: 28.5%;
+    margin-left: 82%;
     position: fixed;
     z-index: 900;
     width: 16%;

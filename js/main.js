@@ -1,14 +1,33 @@
-var map;
 var lingua = "it";
-
+var directionsService; //You can calculate directions (using a variety of methods of transportation) by using the DirectionsService object.
+var _mapPoints = new Array();  //Define a variable with all map points.
+var _directionsRenderer = '';  //Define a DirectionsRenderer variable.
+var map;
 function initMap() {  // lancia la mappa
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 43.7695604, lng: 11.25581360000001}, //centrata inizialmente
         zoom: 14
     });
-    changeLang();
+    directionsService = new google.maps.DirectionsService();
+    _directionsRenderer = new google.maps.DirectionsRenderer();   //DirectionsRenderer() is a used to render the direction
 
-}
+    _directionsRenderer.setMap(map);   //Set the map for directionsRenderer
+
+
+    _directionsRenderer.setOptions({              //Set different options for DirectionsRenderer mehtods //draggable option will used to drag the route.
+        draggable: false
+    });
+    if (_mapPoints.length == 0)
+    {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var posCorrente = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            }
+            var _currentPoints = posCorrente;
+            _mapPoints.push(_currentPoints);
+        });
+    }
     // Indica la posizione corrente
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -24,13 +43,18 @@ function initMap() {  // lancia la mappa
                 icon: image1
             });
             map.setCenter(posCorrente);
-         }, function() {
-          handleLocationError(true, infoWindow, map.getCenter());
-         });
-     } else {
-         // Browser doesn't support Geolocation
-         handleLocationError(false, infoWindow, map.getCenter());
-   }
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+
+    changeLang();
+
+}
+
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
@@ -159,6 +183,7 @@ function attachMessage(marker, description, path) {
     var content1=document.getElementById("column1");
     var content2=document.getElementById("column2");
     var content3=document.getElementById("helpcontainer");
+
     marker.addListener('click', function() {
 
         var popUp = document.getElementById('descriptor');
@@ -180,12 +205,123 @@ function attachMessage(marker, description, path) {
         content1.setAttribute('style', 'display:block;');
         content2.setAttribute('style', 'display:block;');
         content3.setAttribute('style', 'display:none;');
+
+        addItinerary(marker);
+        removeItinerary(marker);
     });
 
+}
+function addItinerary(pos)
+{
+    var addIt=document.getElementById("addItinerary");
+    var _currentPoints;
 
+    addIt.addEventListener("click", function(){
+        var addItinerary=document.getElementById("descriptor");
+        _currentPoints = pos.position;
+        _mapPoints.push(_currentPoints);
+        getRoutePointsAndWaypoints();
+        addItinerary.setAttribute('style', 'display:none');
+
+    });
 
 }
+function removeItinerary(pos)
+{
+    var remIt=document.getElementById("removeItinerary");
 
+    remIt.addEventListener("click", function(){
+        var remItinerary=document.getElementById("descriptor");
+        var i = _mapPoints.indexOf(pos.position);
+        deleteLocation(i);
+        remItinerary.setAttribute('style', 'display:none');
+
+    });
+}
+function deleteLocation(i)
+{
+        var _temPoint = new Array();
+        for (var w = 0; w < _mapPoints.length; w++)
+        {
+            if (i != w)
+            {
+                _temPoint.push(_mapPoints[w]);
+            }
+        }
+
+        _mapPoints = new Array();
+
+        for (var y = 0; y < _temPoint.length; y++)
+        {
+            _mapPoints.push(_temPoint[y]);
+        }
+        getRoutePointsAndWaypoints();
+}
+function getRoutePointsAndWaypoints()
+{              //getRoutePointsAndWaypoints() will help you to pass points and waypoints to drawRoute() function
+
+    var _waypoints = new Array();       //Define a variable for waypoints.
+
+    if (_mapPoints.length > 2) //Waypoints will be come.
+    {
+        for (var j = 1; j < _mapPoints.length - 1; j++)
+        {
+            var address = _mapPoints[j];
+            if (address !== "")
+            {
+                _waypoints.push({
+                    location: address,
+                    stopover: true       //stopover is used to show marker on map for waypoints
+                });
+            }
+        }
+        drawRoute(_mapPoints[0], _mapPoints[_mapPoints.length - 1], _waypoints);        //Call a drawRoute() function
+    } else if (_mapPoints.length > 1)
+    {
+        drawRoute(_mapPoints[_mapPoints.length - 2], _mapPoints[_mapPoints.length - 1], _waypoints);       //Call a drawRoute() function only for start and end locations
+    }
+    else
+    {
+        drawRoute(_mapPoints[_mapPoints.length - 1], _mapPoints[_mapPoints.length - 1], _waypoints);       //Call a drawRoute() function only for one point as start and end locations.
+    }
+}
+
+
+function drawRoute(originAddress, destinationAddress, _waypoints)       //drawRoute() will help actual draw the route on map.
+{
+
+    var _request = '';         //Define a request variable for route.
+
+
+    if (_waypoints.length > 0)      //This is for more then two locatins
+    {
+        _request = {
+            origin: originAddress,
+            destination: destinationAddress,
+            waypoints: _waypoints,              //an array of waypoints
+            optimizeWaypoints: true,          //set to true if you want google to determine the shortest route or false to use the order specified.
+            travelMode: google.maps.DirectionsTravelMode.WALKING,
+
+        };
+    }
+    else
+    {
+        _request = {          //This is for one or two locations. Here noway point is used
+            origin: originAddress,
+            destination: destinationAddress,
+            travelMode: google.maps.DirectionsTravelMode.WALKING,
+        };
+    }
+
+
+    directionsService.route(_request, function (_response, _status)
+    {           //This will take the request and draw the route and return response and status as output
+        if (_status == google.maps.DirectionsStatus.OK)
+        {
+            _directionsRenderer.setDirections(_response);
+        }
+    });
+}
 
 $(document).ready(function(){
     inserisciMarkers();
@@ -320,56 +456,6 @@ function hidepopup()
 {
     document.getElementById('descriptor').setAttribute('style', 'display:none');
 }
-
-/*function changeLang1(){
-
-    var helpsMe = document.getElementById('help');
-    var nwItinerary = document.getElementById('newItinerary');
-    helpsMe.setAttribute('style', 'font-size:17px; font-style:bold;');
-    nwItinerary.setAttribute('style', 'font-size:17px; font-style:bold;');
-    if (lingua=='it'){
-        helpsMe.textContent= "AIUTO";
-        nwItinerary.textContent = "NUOVO ITINERARIO";
-    }
-    else{
-        helpsMe.textContent= "HELP";
-        nwItinerary.textContent= "NEW ITINERARY";
-    }
-
-}*/
-
-
-
-/*var addPlace = document.getElementById('addItinerary');
-addPlace.addEventListener('click',function(){
-    var posCorrente = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-    };
-    var pointB = marker['coordinate'];
-
-    calculateAndDisplayRoute(directionsService, directionsDisplay, posCorrente, pointB);
-
-}
-
-
-function calculateAndDisplayRoute(directionsService, directionsDisplay, posCorrente, pointB) {
-    directionsService.route({
-        origin: posCorrente,
-        destination: pointB,
-        avoidTolls: true,
-        avoidHighways: false,
-        travelMode: google.maps.TravelMode.DRIVING
-    }, function (response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-        } else {
-            window.alert('Directions request failed due to ' + status);
-        }
-    });
-
-}*/
-
 
 
 
