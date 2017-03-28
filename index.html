@@ -28,13 +28,11 @@
                     <a id="next" onclick="slideShows(1)">&#10095;</a> 
                 </div>
             </div>
-            <div id="helpcontainer">
-                    Benvenuti in My Firenze! Tramite i punti indicati sulla mappa potete scegliere
-                    un itinerario per visitare i luoghi più piacevoli della città.
-
+            <div id="helpcontainer">  <!-- children 1.2-->
+                Benvenuti in My Firenze! Tramite i punti indicati sulla mappa potete scegliere
+                un itinerario per visitare i luoghi più piacevoli della città.
             </div>
         </div>
-
     </div>
 
     <div id="container">
@@ -44,6 +42,7 @@
         <img id="ita" src="img/italia.png" onclick="flagIta()">
         <img id="eng" src="img/ukbw.jpg" onclick="flagEng()">
         <button id="help" onclick="helpMessage()"></button>
+
         <button id="newItinerary" onclick="initMap(),inserisciMarkers(),newItinerary()"></button>
         <div id="favorites">
             <p id="best">Preferiti</p>

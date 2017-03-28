@@ -457,6 +457,13 @@ function hidepopup()
     document.getElementById('descriptor').setAttribute('style', 'display:none');
 }
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+>>>>>>> Stashed changes
 
 
 

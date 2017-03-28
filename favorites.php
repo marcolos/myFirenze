@@ -25,17 +25,4 @@ while( $row = mysqli_fetch_row($pointsOfInterest)){
 }
 echo json_encode($markers);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>

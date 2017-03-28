@@ -23,7 +23,7 @@ html, body
 }
 #logo a img
 {
-    width: 24%;
+    width: 29%;
     height: 12%;
 }
 #ita
@@ -246,13 +246,23 @@ float: right;
 }
 #helpcontainer
 {
-    width: 700px !important;
-    height: 385px !important;
+    margin-top: 3%;
+    width: 900px;
+    height: 965px;
+
+
 }
 #favorites
 {
+<<<<<<< Updated upstream
     margin-top: 28.5%;
     margin-left: 82%;
+=======
+    margin-top: 8%;
+    margin-left: 82.3%;
+    margin-top: 30%;
+    margin-left: 81%;
+>>>>>>> Stashed changes
     position: fixed;
     z-index: 900;
     width: 16%;
@@ -260,7 +270,9 @@ float: right;
     background: #cdcace;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
-    box-shadow: 5px 2px 2px #aaa;
+    box-shadow: 5px 2px 5px #aaa;
+    background-color: wheat;
+
 }
 #menufavorites
 {
