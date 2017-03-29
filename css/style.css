@@ -1,8 +1,8 @@
 html, body
 {
-    background-color: royalblue;
     height: 100%;
     width:100%;
+    margin: 0;
 }
 #container
 {
@@ -11,9 +11,6 @@ html, body
 }
 #map
 {
-    background-position: center;
-    margin-top: -0.6%;
-    margin-left: -0.6%;
     height: 100%;
     width: 100%;
     z-index: 1;
@@ -26,26 +23,28 @@ html, body
 }
 #logo a img
 {
-    width: 150px;
-    height: 80px;
+    width: 29%;
+    height: 12%;
 }
 #ita
 {
+    cursor: pointer;
     position: fixed;
     z-index: 900;
-    left: 92%;
-    margin-top: 1.8%;
-    width: 65px;
-    height: 35px;
+    left: 91.5%;
+    margin-top: 2%;
+    width: 5.5%;
+    height: 5.5%;
 }
 #eng
 {
+    cursor: pointer;
     position: fixed;
     z-index: 900;
-    left: 85%;
-    margin-top: 1.8%;
-    width: 65px;
-    height: 35px;
+    left: 83.5%;
+    margin-top: 2%;
+    width: 5.5%;
+    height: 5.5%;
 }
 #help
 {
@@ -53,8 +52,8 @@ html, body
     z-index: 900;
     left: 20%;
     margin-top: 49%;
-    width: 25em;
-    padding: .2em;
+    width: 17em;
+    padding: .7em;
     color: #ffffff;
     border: solid thin #22a58e;
     -webkit-border-radius: .4em;
@@ -63,6 +62,7 @@ html, body
     -webkit-box-shadow: 2px 2px 3px #999;
     box-shadow: 2px 2px 2px #bbb;
     background-color: #22a58e;
+    cursor: pointer;
 }
 #newItinerary
 {
@@ -70,8 +70,8 @@ html, body
     z-index: 900;
     left: 60%;
     margin-top: 49%;
-    width: 25em;
-    padding: .2em;
+    width: 17em;
+    padding: .7em;
     color: #ffffff;
     border: solid thin #3562cd;
     -webkit-border-radius: .4em;
@@ -80,4 +80,237 @@ html, body
     -webkit-box-shadow: 2px 2px 3px #999;
     box-shadow: 2px 2px 2px #bbb;
     background-color: #3562cd;
+    cursor: pointer;
+}
+
+
+
+#descriptor{
+    z-index: 900;
+    background: #cdcace;
+    background: rgba(255, 255, 255, 0.8);
+    width: 700px !important;
+    height: 400px !important;
+    margin-top: 10%;
+    margin-left: 22%;
+    padding: 10px;
+    position: fixed;
+    display: none;
+    border-radius: 5px;
+    box-shadow: 5px 2px 2px #aaa;
+
+}
+
+#descriptor span{
+    font-family: "Georgia";
+    overflow: scroll;
+    max-height: 150px;
+    cursor: pointer;
+
+}
+#descriptor p{
+
+    overflow: scroll;
+    max-height: 50%;
+    
+    border-radius: 6px;
+
+}
+
+#descriptor h1{
+    font-family:"Lucida Grande";
+    font-size: x-large;
+}
+
+#closeDescriptor{
+color: darkred;
+cursor: pointer;
+}
+#descriptor .column img {
+    height: 90%;
+    width: 90%;
+    margin-left: 8%;
+}
+
+#descriptor img{
+    max-width: 100%;
+
+}
+
+.container {
+    display: flex; /* or inline-flex */
+    height: 385px;
+
+}
+
+.column
+{
+    width: 350px;
+    height: 400px;
+    max-width: 50%;
+    padding: 5px;
+}
+
+.addItinerary{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 150px;
+}
+
+.addItinerary {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.addItinerary:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.removeItinerary{
+    background-color: #d51912; /* Green */
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 150px;
+}
+
+.removeItinerary{
+    background-color: white;
+    color: black;
+    border: 2px solid #d51912;
+
+}
+
+.removeItinerary:hover{
+    background-color: #d51912;
+    color: white;
+}
+.column #prevNext
+{
+    position: relative;
+    margin-top: -58%;
+    margin-left: 8%;
+    width: 90%;
+    max-height: 12%;
+
+}
+#prev
+{
+    display:none;
+    cursor: pointer;
+    padding: 4%;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 4px 4px 0;
+    margin-left:0px;
+    float: left;
+
+}
+#next
+{
+    display: inline-block;
+    cursor: pointer;
+    padding: 4%;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 4px 0 0 4px;
+float: right;
+}
+#prev:hover , #next:hover
+{
+    background-color: black;
+}
+#helpcontainer
+{
+    margin-top: 3%;
+    width: 900px;
+    height: 965px;
+
+
+}
+#favorites
+{
+<<<<<<< Updated upstream
+    margin-top: 28.5%;
+    margin-left: 82%;
+=======
+    margin-top: 8%;
+    margin-left: 82.3%;
+    margin-top: 30%;
+    margin-left: 81%;
+>>>>>>> Stashed changes
+    position: fixed;
+    z-index: 900;
+    width: 16%;
+    height: 30%;
+    background: #cdcace;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 5px 2px 5px #aaa;
+    background-color: wheat;
+
+}
+#menufavorites
+{
+    margin: 0;
+    font-family: Verdana, sans-serif;
+    font-size: 12px;
+    padding: 0;
+    list-style: none;
+    overflow-y: scroll;
+    max-height: 71%;
+}
+#menufavorites li
+{
+    display: block;
+    width: 100%;
+    height: 15.8%;
+    margin: 2px 0;
+    border-radius: 5px 5px 5px 5px;
+
+}
+#menufavorites li a
+{
+    color: black;
+    display: block;
+    line-height: 30px;
+    padding-left: 15px;
+    text-decoration: none;
+    max-width: 90%;
+    overflow-x: scroll;
+    white-space:nowrap;
+}
+#menufavorites li.active, #menufavorites li:hover
+{
+    background-color: #cdcace;
+}
+#best
+{
+    margin-left: 35%;
+    font-size: 20px;
+    padding:0;
 }
