@@ -12,16 +12,16 @@ function initMap() {   // lancia la mappa e viene svolta subito grazie alla Call
     _directionsRenderer = new google.maps.DirectionsRenderer();   //DirectionsRenderer() is a used to render the direction
     _directionsRenderer.setMap(map);   // Set the map for directionsRenderer
 
-
+<<<<<<< HEAD
     _directionsRenderer.setOptions({   // Set different options for DirectionsRenderer mehtods //draggable option will used to drag the route.
         draggable: false
-    });
+=======
     _directionsRenderer.setMap(map);   //Set the map for directionsRenderer
 
 
     _directionsRenderer.setOptions({              //Set different options for DirectionsRenderer mehtods //draggable option will used to drag the route.
         draggable: true
-
+>>>>>>> origin/master
     });
     if (_mapPoints.length == 0)
     {
@@ -125,7 +125,7 @@ function inserisciMarkers() {
 
         //console.log(markers);
 
-        for (var index in markers) { // inserisco nella mappa ognuno dei markers. dichiaro index e la cicla per tutto il markers
+        for (var index in markers) { // inserisco nella mappa ognuno dei markers
             var marker = markers[index];// index è l'indice nell'array
             var name = marker.name;
             var coordinates = marker['coordinate'];
@@ -133,11 +133,11 @@ function inserisciMarkers() {
             var lat = coordinates['lat'];
             var lng = coordinates['lng'];
             var path = marker.path;
-            var position = {lat:parseFloat(lat), lng: parseFloat(lng)};
-
-            var title=name;
-            var pointInterest = new google.maps.Marker(position,map,title);
-
+            var pointInterest = new google.maps.Marker({
+                position: {lat:  parseFloat(lat), lng:  parseFloat(lng)},
+                map: map,
+                title: name
+            });
             attachMessage(pointInterest, description, path);
         }
     });
@@ -466,6 +466,11 @@ function hidepopup()
     document.getElementById('descriptor').setAttribute('style', 'display:none');
 }
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> origin/master
 
 
 
