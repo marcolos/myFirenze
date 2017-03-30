@@ -4,7 +4,7 @@
 
 $lingua = $_GET['lingua'];
 
-if(isset($lingua) and $lingua == "it") {
+if(isset($lingua) and $lingua == "it") {  /*se abbiamo passato la lingua e la lingua passata è ita allora... altrimenti se non è stato passata oppure è italiana ... */
     $query = "SELECT name_it, lat, lng, desc_it, path FROM poi";
 
 } else{

@@ -1,20 +1,18 @@
 var lingua = "it";
-var directionsService; //You can calculate directions (using a variety of methods of transportation) by using the DirectionsService object.
-var _mapPoints = new Array();  //Define a variable with all map points.
-var _directionsRenderer = '';  //Define a DirectionsRenderer variable.
+var directionsService; // You can calculate directions (using a variety of methods of transportation) by using the DirectionsService object.
+var _mapPoints = new Array();  // Define a variable with all map points.
+var _directionsRenderer = '';  // Define a DirectionsRenderer variable.
 var map;
-function initMap() {  // lancia la mappa
+function initMap() {   // lancia la mappa e viene svolta subito grazie alla CallBack nella riga 9 dell'HTML
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 43.7695604, lng: 11.25581360000001}, //centrata inizialmente
+        center: {lat: 43.7695604, lng: 11.25581360000001}, // centrata inizialmente
         zoom: 14
     });
     directionsService = new google.maps.DirectionsService();
     _directionsRenderer = new google.maps.DirectionsRenderer();   //DirectionsRenderer() is a used to render the direction
+    _directionsRenderer.setMap(map);   // Set the map for directionsRenderer
 
-    _directionsRenderer.setMap(map);   //Set the map for directionsRenderer
-
-
-    _directionsRenderer.setOptions({              //Set different options for DirectionsRenderer mehtods //draggable option will used to drag the route.
+    _directionsRenderer.setOptions({   // Set different options for DirectionsRenderer mehtods //draggable option will used to drag the route.
         draggable: false
     });
     if (_mapPoints.length == 0)
@@ -35,6 +33,8 @@ function initMap() {  // lancia la mappa
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+
+
             var image1='img/poscorrente.png';
             var marker = new google.maps.Marker({
                 position: posCorrente,
@@ -63,7 +63,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: Your browser doesn\'t support geolocation.');
 }
 
-function flagIta() {
+function flagIta() {  // viene svolta attraverso l' on-click su flangIta nell' HTML
     var popUp = document.getElementById('descriptor');
     popUp.setAttribute('style', 'display:none;');
     document.getElementById('ita').src = 'img/italia.png';
@@ -77,7 +77,7 @@ function flagIta() {
 
 }
 
-function flagEng() {
+function flagEng() {  // viene svolta attraverso l' on-click su flangEng nell' HTML
     var popUp = document.getElementById('descriptor');
     popUp.setAttribute('style', 'display:none;');
     document.getElementById('ita').src = 'img/italiabw.png';
@@ -112,11 +112,13 @@ function newItinerary(){
 
 function inserisciMarkers() {
     var url = "marker.php?lingua=" + lingua;
-    $.get( url, function(data) {
-        var markers = JSON.parse(data); // markers ora è l'array uguale al php. dentro ci sono una lista di coordinate con un nom //decodifica
-        
+    $.get( url, function(data) {  // attraverso il get faccio una richiesta a markers.php. Dentro data ho la risposta del php
+        var markers = JSON.parse(data); // markers ora è l'array uguale al php(vedi marker.php). Siccome php genera ed invia codice in formato JSON, con il parse viene decifrato per essere leggibile al javascript.
+
+        //console.log(markers);
+
         for (var index in markers) { // inserisco nella mappa ognuno dei markers
-            var marker = markers[index];// idx è l'indice nell'array
+            var marker = markers[index];// index è l'indice nell'array
             var name = marker.name;
             var coordinates = marker['coordinate'];
             var description = marker.description;
@@ -457,13 +459,7 @@ function hidepopup()
     document.getElementById('descriptor').setAttribute('style', 'display:none');
 }
 
-<<<<<<< Updated upstream
-=======
 
-
-
-
->>>>>>> Stashed changes
 
 
 
