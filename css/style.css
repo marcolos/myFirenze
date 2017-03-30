@@ -15,18 +15,20 @@ html, body
     width: 100%;
     z-index: 1;
 }
+
 #logo
 {
     position: fixed;
     z-index: 900;
     left: 45%;
 }
+
 #logo a img
 {
     width: 29%;
     height: 12%;
 }
-#ita
+/*#ita
 {
     cursor: pointer;
     position: fixed;
@@ -111,7 +113,7 @@ html, body
 
     overflow: scroll;
     max-height: 50%;
-    
+
     border-radius: 6px;
 
 }
@@ -122,8 +124,8 @@ html, body
 }
 
 #closeDescriptor{
-color: darkred;
-cursor: pointer;
+    color: darkred;
+    cursor: pointer;
 }
 #descriptor .column img {
     height: 90%;
@@ -137,7 +139,7 @@ cursor: pointer;
 }
 
 .container {
-    display: flex; /* or inline-flex */
+    display: flex;
     height: 385px;
 
 }
@@ -151,7 +153,7 @@ cursor: pointer;
 }
 
 .addItinerary{
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
     border: none;
     color: white;
     padding: 8px;
@@ -160,7 +162,7 @@ cursor: pointer;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     cursor: pointer;
     width: 170px;
@@ -178,7 +180,7 @@ cursor: pointer;
 }
 
 .removeItinerary{
-    background-color: #d51912; /* Green */
+    background-color: #d51912;
     border: none;
     color: white;
     padding: 8px;
@@ -187,7 +189,7 @@ cursor: pointer;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     cursor: pointer;
     width: 150px;
@@ -237,7 +239,7 @@ cursor: pointer;
     font-size: 20px;
     transition: 0.6s ease;
     border-radius: 4px 0 0 4px;
-float: right;
+    float: right;
 }
 #prev:hover , #next:hover
 {
@@ -254,10 +256,6 @@ float: right;
 }
 #favorites
 {
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
     margin-top: 28.5%;
     margin-left: 82%;
     margin-top: 8%;
@@ -315,5 +313,7 @@ float: right;
     font-size: 20px;
     padding:0;
 }
+
+
 
 
