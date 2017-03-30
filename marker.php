@@ -22,8 +22,6 @@ while( $row = mysqli_fetch_row($pointsOfInterest)){
         "lng" => $row[2]);
     $marker['description']= $row[3];
     $marker['path']= $row[4];
-    /*$marker['pointB'] = array( "lat" => $row[1],
-       "lng" => $row[2]);*/
     $markers[$count] = $marker;
     $count = $count+1;
 
