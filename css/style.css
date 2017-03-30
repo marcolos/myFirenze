@@ -98,7 +98,6 @@ html, body
     display: none;
     border-radius: 5px;
     box-shadow: 5px 2px 2px #aaa;
-
 }
 
 #descriptor span{
@@ -164,7 +163,7 @@ cursor: pointer;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
-    width: 150px;
+    width: 170px;
 }
 
 .addItinerary {
@@ -247,22 +246,20 @@ float: right;
 #helpcontainer
 {
     margin-top: 3%;
-    width: 900px;
-    height: 965px;
+    font-family: Cochin;
+    margin-right: 40%;
+    color: #3562cd;
 
 
 }
 #favorites
 {
-<<<<<<< Updated upstream
     margin-top: 28.5%;
     margin-left: 82%;
-=======
     margin-top: 8%;
     margin-left: 82.3%;
     margin-top: 30%;
     margin-left: 81%;
->>>>>>> Stashed changes
     position: fixed;
     z-index: 900;
     width: 16%;
@@ -314,3 +311,5 @@ float: right;
     font-size: 20px;
     padding:0;
 }
+
+

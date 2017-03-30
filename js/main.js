@@ -15,7 +15,7 @@ function initMap() {  // lancia la mappa
 
 
     _directionsRenderer.setOptions({              //Set different options for DirectionsRenderer mehtods //draggable option will used to drag the route.
-        draggable: false
+        draggable: true
     });
     if (_mapPoints.length == 0)
     {
@@ -211,31 +211,35 @@ function attachMessage(marker, description, path) {
     });
 
 }
-function addItinerary(pos)
+
+function addItinerary(marker)
 {
     var addIt=document.getElementById("addItinerary");
-    var _currentPoints;
 
     addIt.addEventListener("click", function(){
-        var addItinerary=document.getElementById("descriptor");
-        _currentPoints = pos.position;
-        _mapPoints.push(_currentPoints);
-        getRoutePointsAndWaypoints();
-        addItinerary.setAttribute('style', 'display:none');
+        if(_mapPoints.length > 0) {
+            var addItinerary = document.getElementById("descriptor");
+            _mapPoints.push(marker.position);
+            getRoutePointsAndWaypoints();
+            addItinerary.setAttribute('style', 'display:none');
+            console.log('ciao');
 
+        }
+        else {
+            alert('Aspetta il caricamento della tua posizione corrente / Wait the loading of your current position');
+        }
     });
 
 }
-function removeItinerary(pos)
+function removeItinerary(marker)
 {
     var remIt=document.getElementById("removeItinerary");
 
     remIt.addEventListener("click", function(){
         var remItinerary=document.getElementById("descriptor");
-        var i = _mapPoints.indexOf(pos.position);
+        var i = _mapPoints.indexOf(marker.position);
         deleteLocation(i);
         remItinerary.setAttribute('style', 'display:none');
-
     });
 }
 function deleteLocation(i)
@@ -262,8 +266,7 @@ function getRoutePointsAndWaypoints()
 
     var _waypoints = new Array();       //Define a variable for waypoints.
 
-    if (_mapPoints.length > 2) //Waypoints will be come.
-    {
+
         for (var j = 1; j < _mapPoints.length - 1; j++)
         {
             var address = _mapPoints[j];
@@ -271,19 +274,11 @@ function getRoutePointsAndWaypoints()
             {
                 _waypoints.push({
                     location: address,
-                    stopover: true       //stopover is used to show marker on map for waypoints
+                    stopover: false       //stopover is used to show marker on map for waypoints
                 });
             }
         }
         drawRoute(_mapPoints[0], _mapPoints[_mapPoints.length - 1], _waypoints);        //Call a drawRoute() function
-    } else if (_mapPoints.length > 1)
-    {
-        drawRoute(_mapPoints[_mapPoints.length - 2], _mapPoints[_mapPoints.length - 1], _waypoints);       //Call a drawRoute() function only for start and end locations
-    }
-    else
-    {
-        drawRoute(_mapPoints[_mapPoints.length - 1], _mapPoints[_mapPoints.length - 1], _waypoints);       //Call a drawRoute() function only for one point as start and end locations.
-    }
 }
 
 
@@ -300,7 +295,7 @@ function drawRoute(originAddress, destinationAddress, _waypoints)       //drawRo
             destination: destinationAddress,
             waypoints: _waypoints,              //an array of waypoints
             optimizeWaypoints: true,          //set to true if you want google to determine the shortest route or false to use the order specified.
-            travelMode: google.maps.DirectionsTravelMode.WALKING,
+            travelMode: google.maps.DirectionsTravelMode.WALKING
 
         };
     }
@@ -309,7 +304,7 @@ function drawRoute(originAddress, destinationAddress, _waypoints)       //drawRo
         _request = {          //This is for one or two locations. Here noway point is used
             origin: originAddress,
             destination: destinationAddress,
-            travelMode: google.maps.DirectionsTravelMode.WALKING,
+            travelMode: google.maps.DirectionsTravelMode.WALKING
         };
     }
 
@@ -421,6 +416,8 @@ function changeLang(){
         if (lingua == 'it') {
             itinerary.children[1].children[0].children[2].textContent = "Aggiungi all'itinerario +";
             itinerary.children[1].children[0].children[3].textContent = "Rimuovi dall'itineraro -";
+            itinerary.children[1].children[2].textContent = "Benvenuti in myFirenze! Vi servirà per visitare " +
+                "la bellissima città di Firenze.";
             helpsMe.textContent = "AIUTO";
             nwItinerary.textContent = "NUOVO ITINERARIO";
             favorite.textContent = "Preferiti";
@@ -436,6 +433,8 @@ function changeLang(){
         else {
             itinerary.children[1].children[0].children[2].textContent = "Add to itinerary +";
             itinerary.children[1].children[0].children[3].textContent = "Remove from itinerary -";
+            itinerary.children[1].children[2].textContent = "Welcome! This is myFirenze. It will help you to visit the " +
+                "beautiful city of Florence.";
             helpsMe.textContent = "HELP";
             nwItinerary.textContent = "NEW ITINERARY";
             favorite.textContent = "Favorites";
@@ -456,14 +455,6 @@ function hidepopup()
 {
     document.getElementById('descriptor').setAttribute('style', 'display:none');
 }
-
-<<<<<<< Updated upstream
-=======
-
-
-
-
->>>>>>> Stashed changes
 
 
 
