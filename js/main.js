@@ -110,8 +110,7 @@ function newItinerary(){
 }
 
 
-function inserisciMarkers()
-{
+function inserisciMarkers() {
     var url = "marker.php?lingua=" + lingua;
     $.get( url, function(data) {
         var markers = JSON.parse(data); // markers ora è l'array uguale al php. dentro ci sono una lista di coordinate con un nom //decodifica
@@ -225,6 +224,7 @@ function addItinerary(pos)
         addItinerary.setAttribute('style', 'display:none');
 
     });
+
 }
 function removeItinerary(pos)
 {
@@ -232,7 +232,7 @@ function removeItinerary(pos)
 
     remIt.addEventListener("click", function(){
         var remItinerary=document.getElementById("descriptor");
-        var i = _mapPoints.indexOf();
+        var i = _mapPoints.indexOf(pos.position);
         deleteLocation(i);
         remItinerary.setAttribute('style', 'display:none');
 
@@ -240,8 +240,6 @@ function removeItinerary(pos)
 }
 function deleteLocation(i)
 {
-    if (confirm("Are you sure want to delete this location?") == true)
-    {
         var _temPoint = new Array();
         for (var w = 0; w < _mapPoints.length; w++)
         {
@@ -252,16 +250,12 @@ function deleteLocation(i)
         }
 
         _mapPoints = new Array();
-        for (var y = 0; y < _temPoint.length; y++) {
+
+        for (var y = 0; y < _temPoint.length; y++)
+        {
             _mapPoints.push(_temPoint[y]);
         }
-
         getRoutePointsAndWaypoints();
-    }
-    else
-    {
-        return false;
-    }
 }
 function getRoutePointsAndWaypoints()
 {              //getRoutePointsAndWaypoints() will help you to pass points and waypoints to drawRoute() function
@@ -306,7 +300,7 @@ function drawRoute(originAddress, destinationAddress, _waypoints)       //drawRo
             destination: destinationAddress,
             waypoints: _waypoints,              //an array of waypoints
             optimizeWaypoints: true,          //set to true if you want google to determine the shortest route or false to use the order specified.
-            travelMode: google.maps.DirectionsTravelMode.WALKING
+            travelMode: google.maps.DirectionsTravelMode.WALKING,
 
         };
     }
@@ -315,7 +309,7 @@ function drawRoute(originAddress, destinationAddress, _waypoints)       //drawRo
         _request = {          //This is for one or two locations. Here noway point is used
             origin: originAddress,
             destination: destinationAddress,
-            travelMode: google.maps.DirectionsTravelMode.WALKING
+            travelMode: google.maps.DirectionsTravelMode.WALKING,
         };
     }
 
