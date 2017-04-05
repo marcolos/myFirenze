@@ -1,3 +1,4 @@
+
 <?php
 
 @require_once("config.php"); //includo la configurazione del file .php di connessione al db
@@ -34,6 +35,8 @@ markers:
        coordinate:
             lat = asfsfasfas
             lng = safsdfsagf
+       description = "dfcdcvdvvf"
+       path = "nome_cartella"
     1: nome = "sdfsdsd"
        coordinate:
             lat = asfsfasfas

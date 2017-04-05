@@ -8,6 +8,10 @@ function initMap() {  // lancia la mappa
         center: {lat: 43.7695604, lng: 11.25581360000001}, //centrata inizialmente
         zoom: 14
     });
+    while(_mapPoints.length > 0)
+    {
+        _mapPoints.pop();
+    }
     directionsService = new google.maps.DirectionsService();
     _directionsRenderer = new google.maps.DirectionsRenderer();   //DirectionsRenderer() is a used to render the direction
 
@@ -114,7 +118,6 @@ function inserisciMarkers() {
     var url = "marker.php?lingua=" + lingua;
     $.get( url, function(data) {
         var markers = JSON.parse(data); // markers ora è l'array uguale al php. dentro ci sono una lista di coordinate con un nom //decodifica
-        
         for (var index in markers) { // inserisco nella mappa ognuno dei markers
             var marker = markers[index];// idx è l'indice nell'array
             var name = marker.name;
@@ -129,6 +132,7 @@ function inserisciMarkers() {
                 title: name
             });
             attachMessage(pointInterest, description, path);
+
         }
     });
 }
@@ -184,6 +188,7 @@ function attachMessage(marker, description, path) {
     var content2=document.getElementById("column2");
     var content3=document.getElementById("helpcontainer");
 
+
     marker.addListener('click', function() {
 
         var popUp = document.getElementById('descriptor');
@@ -206,6 +211,7 @@ function attachMessage(marker, description, path) {
         content2.setAttribute('style', 'display:block;');
         content3.setAttribute('style', 'display:none;');
 
+
         addItinerary(marker);
         removeItinerary(marker);
     });
@@ -214,8 +220,8 @@ function attachMessage(marker, description, path) {
 
 function addItinerary(marker)
 {
-    var addIt=document.getElementById("addItinerary");
 
+    var addIt=document.getElementById("addItinerary");
     addIt.addEventListener("click", function(){
         if(_mapPoints.length > 0) {
             var addItinerary = document.getElementById("descriptor");
