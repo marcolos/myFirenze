@@ -18,12 +18,12 @@ function initMap() {  // lancia la mappa
     _directionsRenderer.setMap(map);   //Set the map for directionsRenderer
 
 
-    _directionsRenderer.setOptions({              //Set different options for DirectionsRenderer mehtods //draggable option will used to drag the route.
+    _directionsRenderer.setOptions({              //Set different options for DirectionsRenderer methods //draggable option will used to drag the route.
         draggable: true
     });
-    if (_mapPoints.length == 0)
-    {
-        navigator.geolocation.getCurrentPosition(function(position) {
+
+    if (_mapPoints.length == 0) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             var posCorrente = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
@@ -32,6 +32,7 @@ function initMap() {  // lancia la mappa
             _mapPoints.push(_currentPoints);
         });
     }
+
     // Indica la posizione corrente
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -216,6 +217,7 @@ function attachMessage(marker, description, path) {
         removeItinerary(marker);
     });
 
+
 }
 
 function addItinerary(marker)
@@ -272,19 +274,26 @@ function getRoutePointsAndWaypoints()
 
     var _waypoints = new Array();       //Define a variable for waypoints.
 
-
-        for (var j = 1; j < _mapPoints.length - 1; j++)
-        {
+    if (_mapPoints.length > 2) //Waypoints will be come.
+    {
+        for (var j = 1; j < _mapPoints.length - 1; j++) {
             var address = _mapPoints[j];
-            if (address !== "")
-            {
+            if (address !== "") {
                 _waypoints.push({
                     location: address,
-                    stopover: false       //stopover is used to show marker on map for waypoints
+                    stopover: false  //stopover is used to show marker on map for waypoints
                 });
             }
         }
-        drawRoute(_mapPoints[0], _mapPoints[_mapPoints.length - 1], _waypoints);        //Call a drawRoute() function
+        //Call a drawRoute() function
+        drawRoute(_mapPoints[0], _mapPoints[_mapPoints.length - 1], _waypoints);
+    } else if (_mapPoints.length > 1) {
+        //Call a drawRoute() function only for start and end locations
+        drawRoute(_mapPoints[_mapPoints.length - 2], _mapPoints[_mapPoints.length - 1], _waypoints);
+    } else {
+        //Call a drawRoute() function only for one point as start and end locations.
+        drawRoute(_mapPoints[_mapPoints.length - 1], _mapPoints[_mapPoints.length - 1], _waypoints);
+    }
 }
 
 
