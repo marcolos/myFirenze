@@ -1,17 +1,17 @@
 var lingua = "it";
 var directionsService; //You can calculate directions (using a variety of methods of transportation) by using the DirectionsService object.
-var _mapPoints = new Array();  //Define a variable with all map points.
+var _mapPoints = {};  //Define a variable with all map points.
+_mapPoints.length = 0;
 var _directionsRenderer = '';  //Define a DirectionsRenderer variable.
 var map;
+
 function initMap() {  // lancia la mappa
+
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 43.7695604, lng: 11.25581360000001}, //centrata inizialmente
         zoom: 14
     });
-    while(_mapPoints.length > 0)
-    {
-        _mapPoints.pop();
-    }
+
     directionsService = new google.maps.DirectionsService();
     _directionsRenderer = new google.maps.DirectionsRenderer();   //DirectionsRenderer() is a used to render the direction
 
@@ -21,17 +21,6 @@ function initMap() {  // lancia la mappa
     _directionsRenderer.setOptions({              //Set different options for DirectionsRenderer methods //draggable option will used to drag the route.
         draggable: true
     });
-
-    if (_mapPoints.length == 0) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var posCorrente = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            }
-            var _currentPoints = posCorrente;
-            _mapPoints.push(_currentPoints);
-        });
-    }
 
     // Indica la posizione corrente
     if (navigator.geolocation) {
@@ -48,6 +37,10 @@ function initMap() {  // lancia la mappa
                 icon: image1
             });
             map.setCenter(posCorrente);
+            if (_mapPoints.length === 0) {
+                    _mapPoints[0] = posCorrente;
+                    _mapPoints.length = 1;
+            }
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -109,9 +102,16 @@ function helpMessage(){
 
 
 function newItinerary(){
-    document.getElementById('newItinerary');
     var popUp = document.getElementById('descriptor');
     popUp.setAttribute('style', 'display:none;');
+    console.log(_mapPoints);
+    _mapPoints = {};
+    _mapPoints.length = 0;
+    l=0;
+    console.log(_mapPoints);
+    initMap();
+    inserisciMarkers();
+    console.log(_mapPoints);
 }
 
 
@@ -132,7 +132,10 @@ function inserisciMarkers() {
                 map: map,
                 title: name
             });
-            attachMessage(pointInterest, description, path);
+            var data = {
+                position: {lat:  parseFloat(lat), lng:  parseFloat(lng)}
+            };
+            attachMessage(pointInterest, data, description, path);
 
         }
     });
@@ -181,7 +184,7 @@ function favorite(index)
     });
 }
 // CREO LA FINESTRELLA
-function attachMessage(marker, description, path) {
+function attachMessage(marker, data, description, path) {
     //Quando premo sul marker
     var prev = document.getElementById('prev');
     var next = document.getElementById('next');
@@ -191,7 +194,6 @@ function attachMessage(marker, description, path) {
 
 
     marker.addListener('click', function() {
-
         var popUp = document.getElementById('descriptor');
         popUp.setAttribute('style','display:block;');
         popUp.children[1].children[0].children[0].textContent = marker.title;
@@ -212,63 +214,13 @@ function attachMessage(marker, description, path) {
         content2.setAttribute('style', 'display:block;');
         content3.setAttribute('style', 'display:none;');
 
-
-        addItinerary(marker);
-        removeItinerary(marker);
+        popUp.setAttribute('lat', data.position.lat);
+        popUp.setAttribute('lng',data.position.lng);
     });
 
 
 }
 
-function addItinerary(marker)
-{
-
-    var addIt=document.getElementById("addItinerary");
-    addIt.addEventListener("click", function(){
-        if(_mapPoints.length > 0) {
-            var addItinerary = document.getElementById("descriptor");
-            _mapPoints.push(marker.position);
-            getRoutePointsAndWaypoints();
-            addItinerary.setAttribute('style', 'display:none');
-            console.log('ciao');
-
-        }
-        else {
-            alert('Aspetta il caricamento della tua posizione corrente / Wait the loading of your current position');
-        }
-    });
-
-}
-function removeItinerary(marker)
-{
-    var remIt=document.getElementById("removeItinerary");
-
-    remIt.addEventListener("click", function(){
-        var remItinerary=document.getElementById("descriptor");
-        var i = _mapPoints.indexOf(marker.position);
-        deleteLocation(i);
-        remItinerary.setAttribute('style', 'display:none');
-    });
-}
-function deleteLocation(i)
-{
-        var _temPoint = new Array();
-        for (var w = 0; w < _mapPoints.length; w++)
-        {
-            if (i != w)
-            {
-                _temPoint.push(_mapPoints[w]);
-            }
-        }
-
-        _mapPoints = new Array();
-
-        for (var y = 0; y < _temPoint.length; y++)
-        {
-            _mapPoints.push(_temPoint[y]);
-        }
-        getRoutePointsAndWaypoints();
-}
 function getRoutePointsAndWaypoints()
 {              //getRoutePointsAndWaypoints() will help you to pass points and waypoints to drawRoute() function
 
@@ -276,23 +228,23 @@ function getRoutePointsAndWaypoints()
 
     if (_mapPoints.length > 2) //Waypoints will be come.
     {
-        for (var j = 1; j < _mapPoints.length - 1; j++) {
-            var address = _mapPoints[j];
-            if (address !== "") {
-                _waypoints.push({
-                    location: address,
-                    stopover: false  //stopover is used to show marker on map for waypoints
-                });
+        for(var uuid in _mapPoints){
+            if(_mapPoints.hasOwnProperty(uuid) && uuid !== 'length'){
+                var address = _mapPoints[uuid];
+                if (address !== "") {
+                    _waypoints.push({
+                        location: address,
+                        stopover: false  //stopover is used to show marker on map for waypoints
+                    });
+                }
             }
         }
         //Call a drawRoute() function
-        drawRoute(_mapPoints[0], _mapPoints[_mapPoints.length - 1], _waypoints);
-    } else if (_mapPoints.length > 1) {
-        //Call a drawRoute() function only for start and end locations
-        drawRoute(_mapPoints[_mapPoints.length - 2], _mapPoints[_mapPoints.length - 1], _waypoints);
-    } else {
-        //Call a drawRoute() function only for one point as start and end locations.
-        drawRoute(_mapPoints[_mapPoints.length - 1], _mapPoints[_mapPoints.length - 1], _waypoints);
+        drawRoute(_mapPoints[0], _mapPoints[lastIndex(_mapPoints)], _waypoints);
+    } else if(_mapPoints.length === 2){
+        drawRoute(_mapPoints[0], _mapPoints[lastIndex(_mapPoints)], _waypoints);
+    } else if(_mapPoints.length < 2){
+        newItinerary();
     }
 }
 
@@ -335,7 +287,60 @@ function drawRoute(originAddress, destinationAddress, _waypoints)       //drawRo
 
 $(document).ready(function(){
     inserisciMarkers();
+    var addIt=document.getElementById("addItinerary");
+    addIt.addEventListener("click", function(){
+        if(_mapPoints.length > 0) {
+            var addItinerary = document.getElementById("descriptor");
+            var data = {
+                lat: parseFloat(addItinerary.getAttribute('lat')),
+                lng: parseFloat(addItinerary.getAttribute('lng'))
+            };
+            _mapPoints[generateUUID()] = data;
+            _mapPoints.length = _mapPoints.length + 1;
+            getRoutePointsAndWaypoints();
+            addItinerary.setAttribute('style', 'display:none');
+        }
+        else {
+            alert('Aspetta il caricamento della tua posizione corrente / Wait the loading of your current position');
+        }
+    });
+
+    var remIt=document.getElementById("removeItinerary");
+
+    remIt.addEventListener("click", function(){
+        var remItinerary = document.getElementById("descriptor");
+        //find id
+        var data = {
+            lat: parseFloat(remItinerary.getAttribute('lat')),
+            lng: parseFloat(remItinerary.getAttribute('lng'))
+        };
+
+        var elem = -1;
+
+        for(var uuid in _mapPoints){
+            if(_mapPoints.hasOwnProperty(uuid) && uuid !== 'length'){
+                var address = _mapPoints[uuid];
+                if (address.lat == data.lat && address.lng == data.lng) {
+                    elem = uuid;
+                }
+            }
+        }
+        _mapPoints = deleteElement(_mapPoints, elem);
+        _mapPoints.length = _mapPoints.length -1;
+        getRoutePointsAndWaypoints();
+        remItinerary.setAttribute('style', 'display:none');
+    });
 });
+
+function deleteElement(_mapPoints, key) {
+    var newObj = {};
+    for(var uuid in _mapPoints){
+        if(_mapPoints.hasOwnProperty(uuid) && uuid !== key){
+            newObj[uuid] = _mapPoints[uuid];
+        }
+    }
+    return newObj;
+}
 
 function UrlExists(url)
 {
@@ -471,7 +476,22 @@ function hidepopup()
     document.getElementById('descriptor').setAttribute('style', 'display:none');
 }
 
+var l = 0;
 
+function generateUUID() {
+    l = l+1;
+    return l;
+    //var d = new Date().getTime();
+    //var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    //    var r = (d + Math.random()*16)%16 | 0;
+    //    d = Math.floor(d/16);
+    //    return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    //});
+    //return uuid;
+};
 
-
+function lastIndex(obj) {
+    var keys = Object.keys(obj);
+    return parseInt(keys[keys.length-2]);
+}
 
