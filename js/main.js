@@ -8,10 +8,7 @@ function initMap() {  // lancia la mappa
         center: {lat: 43.7695604, lng: 11.25581360000001}, //centrata inizialmente
         zoom: 14
     });
-    while(_mapPoints.length > 0)
-    {
-        _mapPoints.pop();
-    }
+
     directionsService = new google.maps.DirectionsService();
     _directionsRenderer = new google.maps.DirectionsRenderer();   //DirectionsRenderer() is a used to render the direction
 
