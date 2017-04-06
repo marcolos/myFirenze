@@ -23,8 +23,8 @@ html, body
 }
 #logo a img
 {
-    width: 29%;
-    height: 12%;
+    max-width: 29%;
+    max-height: 12%;
 }
 #ita
 {

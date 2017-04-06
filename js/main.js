@@ -148,12 +148,18 @@ function favorite(index)
 
         var marker = markers[index];
         var name = marker.name;
+        var coordinates = marker['coordinate'];
+        var lat = coordinates['lat'];
+        var lng = coordinates['lng'];
         var description = marker.description;
         var path = marker.path;
         var pointInterest = new google.maps.Marker({
             map: map,
             title: name
         });
+        var data = {
+            position: {lat:  parseFloat(lat), lng:  parseFloat(lng)}
+        };
         var prev = document.getElementById('prev');
         var next = document.getElementById('next');
         var content1=document.getElementById("column1");
@@ -180,6 +186,8 @@ function favorite(index)
         content1.setAttribute('style', 'display:block;');
         content2.setAttribute('style', 'display:block;');
         content3.setAttribute('style', 'display:none;');
+        popUp.setAttribute('lat', data.position.lat);
+        popUp.setAttribute('lng',data.position.lng);
 
     });
 }
