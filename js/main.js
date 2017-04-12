@@ -430,6 +430,7 @@ function changeLang(){
         var helpsMe = document.getElementById('help');
         var nwItinerary = document.getElementById('newItinerary');
         var favorite = document.getElementById('best');
+        var currentItinerary = document.getElementById('currentItinerary');
         var fav1 = document.getElementById('fav1');
         var fav2 = document.getElementById('fav2');
         var fav3 = document.getElementById('fav3');
@@ -449,6 +450,7 @@ function changeLang(){
             helpsMe.textContent = "AIUTO";
             nwItinerary.textContent = "NUOVO ITINERARIO";
             favorite.textContent = "Preferiti";
+            currentItinerary.textContent = "Itinerario";
             fav1.textContent=markers[0].name;
             fav2.textContent=markers[1].name;
             fav3.textContent=markers[2].name;
@@ -466,6 +468,7 @@ function changeLang(){
             helpsMe.textContent = "HELP";
             nwItinerary.textContent = "NEW ITINERARY";
             favorite.textContent = "Favorites";
+            currentItinerary.textContent = "Itinerary";
             fav1.textContent=markers[0].name;
             fav2.textContent=markers[1].name;
             fav3.textContent=markers[2].name;
