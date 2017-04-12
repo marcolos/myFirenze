@@ -64,8 +64,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 function flagIta() {
     var popUp = document.getElementById('descriptor');
     popUp.setAttribute('style', 'display:none;');
-    document.getElementById('ita').src = 'img/italia.png';
-    document.getElementById('eng').src = 'img/ukbw.jpg';
+    document.getElementById('ita').src = 'img/it.png';
+    document.getElementById('eng').src = 'img/enbw.png';
 
     lingua = "it";
 
@@ -78,8 +78,8 @@ function flagIta() {
 function flagEng() {
     var popUp = document.getElementById('descriptor');
     popUp.setAttribute('style', 'display:none;');
-    document.getElementById('ita').src = 'img/italiabw.png';
-    document.getElementById('eng').src = 'img/uk.jpg';
+    document.getElementById('ita').src = 'img/itbw.png';
+    document.getElementById('eng').src = 'img/en.png';
 
     lingua = "en";
 
