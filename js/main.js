@@ -29,7 +29,7 @@ function initMap() {  // lancia la mappa
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            var image1='img/poscorrente.png';
+            var image1='img/position.png';
             var marker = new google.maps.Marker({
                 position: posCorrente,
                 map: map,
@@ -130,7 +130,8 @@ function inserisciMarkers() {
             var pointInterest = new google.maps.Marker({
                 position: {lat:  parseFloat(lat), lng:  parseFloat(lng)},
                 map: map,
-                title: name
+                title: name,
+                icon: "img/markers.png"
             });
             var data = {
                 position: {lat:  parseFloat(lat), lng:  parseFloat(lng)}
