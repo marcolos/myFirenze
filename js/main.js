@@ -19,7 +19,8 @@ function initMap() {  // lancia la mappa
 
 
     _directionsRenderer.setOptions({              //Set different options for DirectionsRenderer methods //draggable option will used to drag the route.
-        draggable: true
+        draggable: true,
+        suppressMarkers: true
     });
 
     // Indica la posizione corrente
@@ -127,6 +128,7 @@ function inserisciMarkers() {
             var lat = coordinates['lat'];
             var lng = coordinates['lng'];
             var path = marker.path;
+            var duration = marker.duration;
             var pointInterest = new google.maps.Marker({
                 position: {lat:  parseFloat(lat), lng:  parseFloat(lng)},
                 map: map,
@@ -136,7 +138,7 @@ function inserisciMarkers() {
             var data = {
                 position: {lat:  parseFloat(lat), lng:  parseFloat(lng)}
             };
-            attachMessage(pointInterest, data, description, path);
+            attachMessage(pointInterest, data, description, path, duration);
 
         }
     });
@@ -154,6 +156,7 @@ function favorite(index)
         var lng = coordinates['lng'];
         var description = marker.description;
         var path = marker.path;
+        var duration = marker.duration;
         var pointInterest = new google.maps.Marker({
             map: map,
             title: name
@@ -172,7 +175,9 @@ function favorite(index)
         popUp.setAttribute('style','display:block;');
         popUp.children[1].children[0].children[0].textContent = pointInterest.title;
         popUp.children[1].children[0].children[1].textContent = description;
+        popUp.children[1].children[0].children[4].children[1].textContent = duration + " min";
         popUp.children[1].children[1].children[0].setAttribute('src','img/'+ path + '/01.jpg');
+
 
         prev.setAttribute('path', path);
         prev.setAttribute('style','display:none;');
@@ -193,7 +198,7 @@ function favorite(index)
     });
 }
 // CREO LA FINESTRELLA
-function attachMessage(marker, data, description, path) {
+function attachMessage(marker, data, description, path, duration) {
     //Quando premo sul marker
     var prev = document.getElementById('prev');
     var next = document.getElementById('next');
@@ -207,6 +212,7 @@ function attachMessage(marker, data, description, path) {
         popUp.setAttribute('style','display:block;');
         popUp.children[1].children[0].children[0].textContent = marker.title;
         popUp.children[1].children[0].children[1].textContent = description;
+        popUp.children[1].children[0].children[4].children[1].textContent = duration + " min";
         popUp.children[1].children[1].children[0].setAttribute('src','img/'+ path + '/01.jpg');
 
         prev.setAttribute('path', path);
@@ -298,6 +304,7 @@ $(document).ready(function(){
     inserisciMarkers();
     var addIt=document.getElementById("addItinerary");
     addIt.addEventListener("click", function(){
+
         if(_mapPoints.length > 0) {
             var addItinerary = document.getElementById("descriptor");
             var data = {
@@ -446,6 +453,7 @@ function changeLang(){
         if (lingua == 'it') {
             itinerary.children[1].children[0].children[2].textContent = "Aggiungi all'itinerario +";
             itinerary.children[1].children[0].children[3].textContent = "Rimuovi dall'itineraro -";
+            itinerary.children[1].children[0].children[4].children[0].textContent = "Tempo di visita: ";
             itinerary.children[1].children[2].textContent = "Benvenuti in myFirenze! Vi servirà per visitare " +
                 "la bellissima città di Firenze.";
             helpsMe.textContent = "AIUTO";
@@ -461,9 +469,11 @@ function changeLang(){
             fav7.textContent=markers[6].name;
             fav8.textContent=markers[7].name;
         }
-        else {
+        else
+        {
             itinerary.children[1].children[0].children[2].textContent = "Add to itinerary +";
             itinerary.children[1].children[0].children[3].textContent = "Remove from itinerary -";
+            itinerary.children[1].children[0].children[4].children[0].textContent = "Time of visit: ";
             itinerary.children[1].children[2].textContent = "Welcome! This is myFirenze. It will help you to visit the " +
                 "beautiful city of Florence.";
             helpsMe.textContent = "HELP";
@@ -481,7 +491,6 @@ function changeLang(){
 
         }
     });
-
 }
 function hidepopup()
 {
