@@ -4,7 +4,7 @@ var _mapPoints = {};  //Define a variable with all map points.
 _mapPoints.length = 0;
 var _directionsRenderer = '';  //Define a DirectionsRenderer variable.
 var map;
-
+var timeVisit = 0;
 function initMap() {  // lancia la mappa
 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -62,13 +62,17 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: Your browser doesn\'t support geolocation.');
 }
 
-function flagIta() {
+function flagIta()
+{
     var popUp = document.getElementById('descriptor');
     popUp.setAttribute('style', 'display:none;');
+    var time = document.getElementById('right');
+    time.textContent = "";
     document.getElementById('ita').src = 'img/it.png';
     document.getElementById('eng').src = 'img/enbw.png';
 
     lingua = "it";
+    timeVisit = 0;
 
     initMap();
     inserisciMarkers();
@@ -76,13 +80,18 @@ function flagIta() {
 
 }
 
-function flagEng() {
+function flagEng()
+{
     var popUp = document.getElementById('descriptor');
+    var time = document.getElementById('right');
+    time.textContent = "";
     popUp.setAttribute('style', 'display:none;');
     document.getElementById('ita').src = 'img/itbw.png';
     document.getElementById('eng').src = 'img/en.png';
 
+
     lingua = "en";
+    timeVisit = 0;
 
     initMap();
     inserisciMarkers();
@@ -90,7 +99,8 @@ function flagEng() {
 
 }
 
-function helpMessage(){
+function helpMessage()
+{
     var helpbutton = document.getElementById("descriptor");
     var content1=document.getElementById("column1");
     var content2=document.getElementById("column2");
@@ -102,13 +112,17 @@ function helpMessage(){
 }
 
 
-function newItinerary(){
+function newItinerary()
+{
     var popUp = document.getElementById('descriptor');
     popUp.setAttribute('style', 'display:none;');
+    var time = document.getElementById('right');
+    time.textContent = "";
     console.log(_mapPoints);
     _mapPoints = {};
     _mapPoints.length = 0;
     l=0;
+    timeVisit = 0;
     console.log(_mapPoints);
     initMap();
     inserisciMarkers();
@@ -116,7 +130,8 @@ function newItinerary(){
 }
 
 
-function inserisciMarkers() {
+function inserisciMarkers()
+{
     var url = "marker.php?lingua=" + lingua;
     $.get( url, function(data) {
         var markers = JSON.parse(data); // markers ora è l'array uguale al php. dentro ci sono una lista di coordinate con un nom //decodifica
@@ -194,7 +209,7 @@ function favorite(index)
         content3.setAttribute('style', 'display:none;');
         popUp.setAttribute('lat', data.position.lat);
         popUp.setAttribute('lng',data.position.lng);
-
+        popUp.setAttribute('duration', duration);
     });
 }
 // CREO LA FINESTRELLA
@@ -231,6 +246,7 @@ function attachMessage(marker, data, description, path, duration) {
 
         popUp.setAttribute('lat', data.position.lat);
         popUp.setAttribute('lng',data.position.lng);
+        popUp.setAttribute('duration', duration);
     });
 
 
@@ -303,6 +319,7 @@ function drawRoute(originAddress, destinationAddress, _waypoints)       //drawRo
 $(document).ready(function(){
     inserisciMarkers();
     var addIt=document.getElementById("addItinerary");
+    var tVisit = document.getElementById('right');
     addIt.addEventListener("click", function(){
 
         if(_mapPoints.length > 0) {
@@ -315,6 +332,8 @@ $(document).ready(function(){
             _mapPoints.length = _mapPoints.length + 1;
             getRoutePointsAndWaypoints();
             addItinerary.setAttribute('style', 'display:none');
+            timeVisit= parseInt(timeVisit) + parseInt(addItinerary.getAttribute('duration'));
+            tVisit.textContent = timeVisit + " min";
         }
         else {
             alert('Aspetta il caricamento della tua posizione corrente / Wait the loading of your current position');
@@ -333,16 +352,28 @@ $(document).ready(function(){
 
         var elem = -1;
 
-        for(var uuid in _mapPoints){
+        for(var uuid in _mapPoints)
+        {
             if(_mapPoints.hasOwnProperty(uuid) && uuid !== 'length'){
                 var address = _mapPoints[uuid];
-                if (address.lat == data.lat && address.lng == data.lng) {
+                if (address.lat == data.lat && address.lng == data.lng)
+                {
                     elem = uuid;
+                    _mapPoints.length = _mapPoints.length -1;
+                    timeVisit= parseInt(timeVisit) - parseInt(remItinerary.getAttribute('duration'));
+                    if (timeVisit < 0)
+                    {
+                        timeVisit = 0;
+                        tVisit.textContent = "";
+                    }
+                    else
+                    {
+                        tVisit.textContent = timeVisit + " min";
+                    }
                 }
             }
         }
         _mapPoints = deleteElement(_mapPoints, elem);
-        _mapPoints.length = _mapPoints.length -1;
         getRoutePointsAndWaypoints();
         remItinerary.setAttribute('style', 'display:none');
     });
@@ -447,6 +478,7 @@ function changeLang(){
         var fav6 = document.getElementById('fav6');
         var fav7 = document.getElementById('fav7');
         var fav8 = document.getElementById('fav8');
+        var timeVisit = document.getElementById('left');
         helpsMe.setAttribute('style', 'font-size:17px; font-style:bold;');
         nwItinerary.setAttribute('style', 'font-size:17px; font-style:bold;');
 
@@ -460,6 +492,7 @@ function changeLang(){
             nwItinerary.textContent = "NUOVO ITINERARIO";
             favorite.textContent = "Preferiti";
             currentItinerary.textContent = "Itinerario";
+            timeVisit.textContent = "Tempo di visita: ";
             fav1.textContent=markers[0].name;
             fav2.textContent=markers[1].name;
             fav3.textContent=markers[2].name;
@@ -480,6 +513,7 @@ function changeLang(){
             nwItinerary.textContent = "NEW ITINERARY";
             favorite.textContent = "Favorites";
             currentItinerary.textContent = "Itinerary";
+            timeVisit.textContent = "Time of visit: ";
             fav1.textContent=markers[0].name;
             fav2.textContent=markers[1].name;
             fav3.textContent=markers[2].name;

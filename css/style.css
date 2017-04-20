@@ -293,7 +293,7 @@ float: right;
     position: fixed;
     z-index: 900;
     width: 16%;
-    height: 37%;
+    height: 28%;
     box-shadow: 5px 2px 5px #aaa;
     background-color: rgba(255, 255, 255, 0.95);
     overflow-y: scroll;
@@ -357,7 +357,39 @@ float: right;
     font-size: 1.25em !important;
     padding:0;
 }
-
+#timeVisit
+{
+    top:10px;
+    margin-top: 24%;
+    margin-left: 82.3%;
+    position: fixed;
+    z-index: 900;
+    width: 16%;
+    height: 5%;
+    background: #cdcace;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 5px 2px 5px #aaa;
+}
+#left
+{
+    text-align: center;
+    line-height: 230%;
+    text-decoration: none;
+    float: left;
+    height: 100%;
+    width: 60%;
+    font-size: 0.95em !important;
+}
+#right
+{
+    text-align: left;
+    line-height: 230%;
+    text-decoration: none;
+    float: left;
+    height: 100%;
+    width: 40%;
+    font-size: 0.95em !important;
+}
 #footer{
     width:100%;
     position: fixed;
