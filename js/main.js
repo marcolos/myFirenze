@@ -5,7 +5,11 @@ _mapPoints.length = 0;
 var _directionsRenderer = '';  //Define a DirectionsRenderer variable.
 var map;
 var timeVisit = 0;
+var itinerario = [];
+
 function initMap() {  // lancia la mappa
+
+    loadItinerario();
 
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 43.7695604, lng: 11.25581360000001}, //centrata inizialmente
@@ -151,7 +155,8 @@ function inserisciMarkers()
                 icon: "img/markers.png"
             });
             var data = {
-                position: {lat:  parseFloat(lat), lng:  parseFloat(lng)}
+                position: {lat:  parseFloat(lat), lng:  parseFloat(lng)},
+                name: name
             };
             attachMessage(pointInterest, data, description, path, duration);
 
@@ -207,6 +212,8 @@ function favorite(index)
         content1.setAttribute('style', 'display:block;');
         content2.setAttribute('style', 'display:block;');
         content3.setAttribute('style', 'display:none;');
+
+        popUp.setAttribute('name', data.name);
         popUp.setAttribute('lat', data.position.lat);
         popUp.setAttribute('lng',data.position.lng);
         popUp.setAttribute('duration', duration);
@@ -244,6 +251,7 @@ function attachMessage(marker, data, description, path, duration) {
         content2.setAttribute('style', 'display:block;');
         content3.setAttribute('style', 'display:none;');
 
+        popUp.setAttribute('name', data.name);
         popUp.setAttribute('lat', data.position.lat);
         popUp.setAttribute('lng',data.position.lng);
         popUp.setAttribute('duration', duration);
@@ -311,6 +319,8 @@ function drawRoute(originAddress, destinationAddress, _waypoints)       //drawRo
     {           //This will take the request and draw the route and return response and status as output
         if (_status == google.maps.DirectionsStatus.OK)
         {
+            //_response.routes[0].bounds = [];
+            //setMapOnAll(null);
             _directionsRenderer.setDirections(_response);
         }
     });
@@ -322,12 +332,20 @@ $(document).ready(function(){
     var tVisit = document.getElementById('right');
     addIt.addEventListener("click", function(){
 
+
+
         if(_mapPoints.length > 0) {
+
+
             var addItinerary = document.getElementById("descriptor");
             var data = {
                 lat: parseFloat(addItinerary.getAttribute('lat')),
                 lng: parseFloat(addItinerary.getAttribute('lng'))
             };
+
+            itinerario.push(addItinerary.getAttribute('name'));
+            loadItinerario();
+
             _mapPoints[generateUUID()] = data;
             _mapPoints.length = _mapPoints.length + 1;
             getRoutePointsAndWaypoints();
@@ -349,6 +367,10 @@ $(document).ready(function(){
             lat: parseFloat(remItinerary.getAttribute('lat')),
             lng: parseFloat(remItinerary.getAttribute('lng'))
         };
+
+        var indexToRemove = itinerario.indexOf(remItinerary.getAttribute('name'));
+        itinerario = removeFromArray(itinerario, indexToRemove);
+        loadItinerario();
 
         var elem = -1;
 
@@ -550,3 +572,30 @@ function lastIndex(obj) {
     return parseInt(keys[keys.length-2]);
 }
 
+function loadItinerario() {
+    var ul = document.getElementById("menuItinerary");
+    ul.innerHTML = '';
+
+    for(i=0; i<itinerario.length; i++){
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(itinerario[i]));
+        li.setAttribute("order", ""+i);
+
+        var a = document.createElement("a");
+        a.appendChild(document.createTextNode("☭"));
+        a.setAttribute("href", "#");
+        a.setAttribute("class", "openPopUp");
+
+        ul.appendChild(li);
+        li.appendChild(a);
+    }
+}
+
+function removeFromArray(array,index) {
+    var result =[];
+    for(i=0; i<array.length; i++){
+        if(i != index)
+            result.push(array[i]);
+    }
+    return result;
+}
