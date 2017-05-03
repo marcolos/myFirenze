@@ -394,42 +394,46 @@ float: right;
     line-height:3em;
     bottom: 100px;
 }
-
 #menuItinerary
 {
     margin: 0;
     font-family: Verdana, sans-serif;
     font-size: 75%;
     padding: 0;
-    list-style: none;
+    max-height: 11.10em;
+    overflow-y: scroll;
 }
-#menuItinerary ul
+#menuItinerary li
 {
+    cursor: pointer;
     display: block;
-    width: 100%;
+    width: 95%;
     height: 2.50em;
     margin: 1% 0;
+    color: black;
+    line-height: 2.50em;
+    padding-left: 5%;
+    white-space:nowrap;
     /*border-radius: 5px 5px 5px 5px;*/
 
 }
-#menuItinerary ul li
-{
-    color: black;
-    display: block;
-    line-height: 2.50em;
-    padding-left: 5%;
-    text-decoration: none;
-    max-width: 30em;
-    overflow-x: scroll;
-    white-space:nowrap;
-}
-#menuItinerary ul.active, #menuItinerary ul:hover
+#menuItinerary li.active, #menuItinerary li:hover
 {
     background-color: rgba(235, 235, 235, 0.43);
 }
 
-.openPopUp{
-    float: right;
-    margin-right: 5px;
+.changeIt
+{
+    float: left;
+    text-decoration: none;
+    max-width: 12.50em;
+    overflow-x: scroll;
+
+}
+.openPopUp
+{
+    float: left;
+    padding-left: 18px;
+    font-size: 30px;
     text-decoration: none;
 }
