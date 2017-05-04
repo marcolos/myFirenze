@@ -546,6 +546,7 @@ function changeLang(){
         var fav7 = document.getElementById('fav7');
         var fav8 = document.getElementById('fav8');
         var timeVisit = document.getElementById('left');
+        var googleTime = document.getElementById('info');
         helpsMe.setAttribute('style', 'font-size:17px; font-style:bold;');
         nwItinerary.setAttribute('style', 'font-size:17px; font-style:bold;');
 
@@ -560,6 +561,7 @@ function changeLang(){
             favorite.textContent = "Preferiti";
             currentItinerary.textContent = "Itinerario";
             timeVisit.textContent = "Tempo di visita: ";
+            googleTime.textContent = "Tempo totale: ";
             fav1.textContent=markers[0].name;
             fav2.textContent=markers[1].name;
             fav3.textContent=markers[2].name;
@@ -581,6 +583,7 @@ function changeLang(){
             favorite.textContent = "Favorites";
             currentItinerary.textContent = "Itinerary";
             timeVisit.textContent = "Time of visit: ";
+            googleTime.textContent = "Total time: ";
             fav1.textContent=markers[0].name;
             fav2.textContent=markers[1].name;
             fav3.textContent=markers[2].name;
