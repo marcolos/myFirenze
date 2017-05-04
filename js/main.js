@@ -141,6 +141,8 @@ function newItinerary()
     _mapPoints.length = 0;
     l=0;
     timeVisit = 0;
+    itinerario = [];
+    itinerario.length=0;
     initMap();
     inserisciMarkers();
 }
@@ -699,6 +701,11 @@ function info(li,a,b)
 
         if(swap1 == -1)
         {
+            if(li.getAttribute('class')==null)
+                li.setAttribute('class','selected');
+            else
+                li.removeAttribute('class');
+
             swap1=li.getAttribute('order');
         }
         else if(swap2 == -1)

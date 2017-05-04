@@ -400,8 +400,9 @@ float: right;
     font-family: Verdana, sans-serif;
     font-size: 75%;
     padding: 0;
-    max-height: 11.10em;
+    max-height: 12.0em;
     overflow-y: scroll;
+    list-style: none;
 }
 #menuItinerary li
 {
@@ -437,3 +438,4 @@ float: right;
     font-size: 30px;
     text-decoration: none;
 }
+
