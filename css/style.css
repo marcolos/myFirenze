@@ -311,7 +311,7 @@ float: right;
     width: 100%;
     height: 2.50em;
     margin: 1% 0;
-    /*border-radius: 5px 5px 5px 5px;*/
+    transition: all 0.3s ease-out;
 
 }
 #menufavorites li a
@@ -406,6 +406,7 @@ float: right;
 }
 #menuItinerary li
 {
+    transition: all 0.3s ease-out;
     cursor: pointer;
     display: block;
     width: 95%;
@@ -422,20 +423,39 @@ float: right;
 {
     background-color: rgba(235, 235, 235, 0.43);
 }
+#menuItinerary .openPopUp:hover
+{
+    background: #eee6d1;
+}
 
 .changeIt
 {
-    float: left;
     text-decoration: none;
-    max-width: 12.50em;
     overflow-x: scroll;
+    width: 88%;
+    max-width: 88%;
+    margin-right: 2%;
 
 }
 .openPopUp
 {
-    float: left;
-    padding-left: 18px;
+    padding-left: 9px;
     font-size: 30px;
     text-decoration: none;
+    width: 10%;
+    background: #eeeada;
+    -webkit-border-radius:40px;
+    -moz-border-radius:40px;
+    border-radius: 40px;
 }
 
+.selected{
+    background: #abd3ff !important;
+}
+.selected .openPopUp{
+    background: #94beff !important;
+}
+
+#menuItinerary li{
+    display: flex;
+}

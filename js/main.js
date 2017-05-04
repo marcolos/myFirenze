@@ -347,6 +347,10 @@ $(document).ready(function(){
     var addIt=document.getElementById("addItinerary");
     var tVisit = document.getElementById('right');
     addIt.addEventListener("click", function(){
+
+        swap1=-1;
+        swap2=-1;
+
         var app=0;
         var addItinerary = document.getElementById("descriptor");
         for (var i=0; i<itinerario.length; i++)
@@ -398,6 +402,10 @@ $(document).ready(function(){
     var remIt=document.getElementById("removeItinerary");
 
     remIt.addEventListener("click", function(){
+
+        swap1=-1;
+        swap2=-1;
+
         var remItinerary = document.getElementById("descriptor");
         //find id
         var data = {
@@ -621,7 +629,7 @@ function loadItinerario()
         var a = document.createElement("div");
         b.appendChild(document.createTextNode(i+1 + ') ' + itinerario[i]));
         b.setAttribute("class", "changeIt");
-        a.appendChild(document.createTextNode("+"));
+        a.appendChild(document.createTextNode(""));
         a.setAttribute("class", "openPopUp");
 
         ul.appendChild(li);
