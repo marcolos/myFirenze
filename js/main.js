@@ -766,20 +766,30 @@ function removeFromArray(array,index) {
 }
 
 function computeDuration(){
-    for(i = 0; i < _mapPoints.length-1 && _mapPoints.length >= 2; i++){
-        var pointA = _mapPoints[i].lat+","+_mapPoints[i].lng;
-        var pointB = _mapPoints[i+1].lat+","+_mapPoints[i+1].lng;
-        var urlO = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+pointA+",DC&destinations=N"+pointB+"&key=AIzaSyAa6bQpbcPxZyWLjtqqOlBEO-tvfP_kYKM";
 
-        console.log(urlO);
+    var CORS = "https://crossorigin.me/";
 
-        $.ajax({
-            url: urlO,
-            crossDomain : true,
-            success: function(result){
-                // time = result.time .... prendi il tempo dal risultato
-                // totTime = totTime + time;
-            }
-        });
+
+    var origin = _mapPoints[0].lat+","+_mapPoints[0].lng;
+    var destination = _mapPoints[_mapPoints.length-1].lat+","+_mapPoints[_mapPoints.length-1].lng;
+
+    var destinations;
+
+    for(i = 1; i < _mapPoints.length; i++){
+        destinations = destinations + _mapPoints[i].lat","+_mapPoints[i].lng;
+        if(i != _mapPoints.length-1)
+            destinations = destinations+"|";
     }
+
+    var url = CORS+"https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+origin+"&destinations="+destinations+"&mode=transit&transit_mode=train&key=AIzaSyAa6bQpbcPxZyWLjtqqOlBEO-tvfP_kYKM";
+
+
+    $.ajax({
+        url: url,
+        crossDomain : true,
+        success: function(result){
+            // time = result.time .... prendi il tempo dal risultato
+            // totTime = totTime + time;
+        }
+    });
 }

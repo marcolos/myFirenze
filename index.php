@@ -1,3 +1,4 @@
+
 <html>
 <head>
     <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -87,6 +88,18 @@
 
 
 
+<script>
+
+
+    $.ajax({
+        url: "https://crossorigin.me/https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&mode=transit&transit_mode=train&key=AIzaSyAa6bQpbcPxZyWLjtqqOlBEO-tvfP_kYKM",
+        dataType: 'json',
+        success: function (result) {
+            console.log(result);
+        }
+    });
+
+</script>
 
 
 </html>
