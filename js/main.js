@@ -14,10 +14,6 @@ function initMap() {  // lancia la mappa
 
 
 
-
-
-
-    // GOOOD
     loadItinerario();
 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -91,6 +87,7 @@ function flagIta()
     itinerario.length=0;
     swap1=-1;
     swap2=-1;
+    totTime=0;
 
     lingua = "it";
 
@@ -115,6 +112,9 @@ function flagEng()
     timeVisit = 0;
     itinerario = [];
     itinerario.length=0;
+    swap1=-1;
+    swap2=-1;
+    totTime=0;
 
     lingua = "en";
 
@@ -149,6 +149,7 @@ function newItinerary()
     timeVisit = 0;
     itinerario = [];
     itinerario.length=0;
+    totTime=0;
     initMap();
     inserisciMarkers();
 }
@@ -288,7 +289,8 @@ function getRoutePointsAndWaypoints()
 
     if (_mapPoints.length > 2) //Waypoints will be come.
     {
-        for(var uuid in _mapPoints){
+        for(var uuid in _mapPoints)
+        {
             if(_mapPoints.hasOwnProperty(uuid) && uuid !== 'length'){
                 var address = _mapPoints[uuid];
                 if (address !== "") {
@@ -354,6 +356,7 @@ $(document).ready(function(){
     var tVisit = document.getElementById('right');
     addIt.addEventListener("click", function(){
 
+        console.log(_mapPoints[0]);
         swap1=-1;
         swap2=-1;
 
@@ -385,6 +388,11 @@ $(document).ready(function(){
                 addItinerary.setAttribute('style', 'display:none');
                 timeVisit= parseInt(timeVisit) + parseInt(addItinerary.getAttribute('duration'));
                 tVisit.textContent = timeVisit + " min";
+                totTime=0;
+                computeDuration();
+                console.log(totTime);
+
+
             }
             else {
                 alert('Aspetta il caricamento della tua posizione corrente / Wait the loading of your current position');
@@ -449,6 +457,8 @@ $(document).ready(function(){
         _mapPoints = deleteElement(_mapPoints, elem);
         getRoutePointsAndWaypoints();
         remItinerary.setAttribute('style', 'display:none');
+        totTime=0;
+        computeDuration();
     });
 });
 
@@ -733,6 +743,7 @@ function info(li,a,b)
             swap1=-1;
             swap2=-1;
         }
+
     });
 
 }
@@ -754,6 +765,9 @@ function swapArrays(swap1,swap2)
 
     getRoutePointsAndWaypoints();
 
+    totTime=0;
+    computeDuration();
+
 }
 
 function removeFromArray(array,index) {
@@ -769,27 +783,24 @@ function computeDuration(){
 
     var CORS = "https://crossorigin.me/";
 
+    for(var i = 0; i < _mapPoints.length-1; i++)
+    {
+        var destination1 = _mapPoints[i].lat+","+_mapPoints[i].lng;
+        var destination2 = _mapPoints[i+1].lat+","+_mapPoints[i+1].lng;
 
-    var origin = _mapPoints[0].lat+","+_mapPoints[0].lng;
-    var destination = _mapPoints[_mapPoints.length-1].lat+","+_mapPoints[_mapPoints.length-1].lng;
+        var url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+destination1+"&destinations="+destination2+"&mode=walking&key=AIzaSyAa6bQpbcPxZyWLjtqqOlBEO-tvfP_kYKM";
 
-    var destinations;
+        url = CORS+url;
 
-    for(i = 1; i < _mapPoints.length; i++){
-        destinations = destinations + _mapPoints[i].lat","+_mapPoints[i].lng;
-        if(i != _mapPoints.length-1)
-            destinations = destinations+"|";
+        $.ajax({
+            url: url,
+            crossDomain : true,
+            success: function(result){
+                var time = result.rows[0].elements[0].duration.value;
+
+                totTime = totTime + time;
+            }
+        });
     }
 
-    var url = CORS+"https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+origin+"&destinations="+destinations+"&mode=transit&transit_mode=train&key=AIzaSyAa6bQpbcPxZyWLjtqqOlBEO-tvfP_kYKM";
-
-
-    $.ajax({
-        url: url,
-        crossDomain : true,
-        success: function(result){
-            // time = result.time .... prendi il tempo dal risultato
-            // totTime = totTime + time;
-        }
-    });
 }
