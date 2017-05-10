@@ -797,8 +797,10 @@ function computeDuration(){
             crossDomain : true,
             success: function(result){
                 var time = result.rows[0].elements[0].duration.value;
-
                 totTime = totTime + time;
+                var timeLabel = document.getElementById('time');
+
+                timeLabel.innerHTML = parseInt(totTime/60) +" min";
             }
         });
     }

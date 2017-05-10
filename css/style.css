@@ -493,3 +493,7 @@ float: right;
 #menuItinerary li{
     display: flex;
 }
+
+#timeItinerary{
+    display: flex;
+}
