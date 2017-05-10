@@ -8,10 +8,16 @@ var timeVisit = 0;
 var itinerario = [];
 var swap1=-1;
 var swap2=-1;
-
+var totTime = 0;
 
 function initMap() {  // lancia la mappa
 
+
+
+
+
+
+    // GOOOD
     loadItinerario();
 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -621,6 +627,7 @@ function lastIndex(obj) {
 }
 function loadItinerario()
 {
+
     var ul = document.getElementById("menuItinerary");
     ul.innerHTML = '';
 
@@ -756,4 +763,23 @@ function removeFromArray(array,index) {
             result.push(array[i]);
     }
     return result;
+}
+
+function computeDuration(){
+    for(i = 0; i < _mapPoints.length-1 && _mapPoints.length >= 2; i++){
+        var pointA = _mapPoints[i].lat+","+_mapPoints[i].lng;
+        var pointB = _mapPoints[i+1].lat+","+_mapPoints[i+1].lng;
+        var urlO = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+pointA+",DC&destinations=N"+pointB+"&key=AIzaSyAa6bQpbcPxZyWLjtqqOlBEO-tvfP_kYKM";
+
+        console.log(urlO);
+
+        $.ajax({
+            url: urlO,
+            crossDomain : true,
+            success: function(result){
+                // time = result.time .... prendi il tempo dal risultato
+                // totTime = totTime + time;
+            }
+        });
+    }
 }
