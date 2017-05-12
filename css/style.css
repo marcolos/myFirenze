@@ -252,7 +252,7 @@ cursor: pointer;
     font-size: 20px;
     transition: 0.6s ease;
     /*border-radius: 0 4px 4px 0;*/
-    margin-left:0px;
+    margin-left: 0px;
     float: left;
 
 }
@@ -331,7 +331,7 @@ float: right;
 }
 #best
 {
-    margin-left: 35%;
+    text-align: center;
     font-size: 1.25em !important;
     padding:0;
 }
@@ -350,7 +350,7 @@ float: right;
 }
 #currentItinerary
 {
-    margin-left: 35%;
+    text-align: center;
     font-size: 1.25em !important;
     padding:0;
 }
@@ -366,6 +366,27 @@ float: right;
     background: #cdcace;
     background-color: rgba(255, 255, 255, 0.95);
     box-shadow: 5px 2px 5px #aaa;
+}
+
+#left
+{
+    text-align: center;
+    line-height: 230%;
+    text-decoration: none;
+    float: left;
+    height: 100%;
+    width: 60%;
+    font-size: 0.95em !important;
+}
+#right
+{
+    text-align: left;
+    line-height: 230%;
+    text-decoration: none;
+    float: left;
+    height: 100%;
+    width: 40%;
+    font-size: 0.95em !important;
 }
 #timeItinerary
 {
@@ -391,27 +412,6 @@ float: right;
     font-size: 0.95em !important;
 }
 #time
-{
-    text-align: left;
-    margin-left: 20%;
-    line-height: 230%;
-    text-decoration: none;
-    float: left;
-    height: 100%;
-    width: 40%;
-    font-size: 0.95em !important;
-}
-#left
-{
-    text-align: center;
-    line-height: 230%;
-    text-decoration: none;
-    float: left;
-    height: 100%;
-    width: 60%;
-    font-size: 0.95em !important;
-}
-#right
 {
     text-align: left;
     line-height: 230%;

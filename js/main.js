@@ -13,7 +13,6 @@ var totTime = 0;
 function initMap() {  // lancia la mappa
 
 
-
     loadItinerario();
 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -77,6 +76,8 @@ function flagIta()
     popUp.setAttribute('style', 'display:none;');
     var time = document.getElementById('right');
     time.textContent = "";
+    var time2 = document.getElementById('time');
+    time2.textContent = "";
     document.getElementById('ita').src = 'img/it.png';
     document.getElementById('eng').src = 'img/enbw.png';
     _mapPoints = {};
@@ -100,8 +101,10 @@ function flagIta()
 function flagEng()
 {
     var popUp = document.getElementById('descriptor');
-    var time = document.getElementById('right');
-    time.textContent = "";
+    var time1 = document.getElementById('right');
+    time1.textContent = "";
+    var time2 = document.getElementById('time');
+    time2.textContent = "";
     popUp.setAttribute('style', 'display:none;');
     document.getElementById('ita').src = 'img/itbw.png';
     document.getElementById('eng').src = 'img/en.png';
@@ -141,8 +144,10 @@ function newItinerary()
 {
     var popUp = document.getElementById('descriptor');
     popUp.setAttribute('style', 'display:none;');
-    var time = document.getElementById('right');
-    time.textContent = "";
+    var time1 = document.getElementById('right');
+    time1.textContent = "";
+    var time2 = document.getElementById('time');
+    time2.textContent = "";
     _mapPoints = {};
     _mapPoints.length = 0;
     l=0;
@@ -282,9 +287,8 @@ function attachMessage(marker, data, description, path, duration) {
 
 }
 
-function getRoutePointsAndWaypoints()
-{              //getRoutePointsAndWaypoints() will help you to pass points and waypoints to drawRoute() function
-
+function getRoutePointsAndWaypoints()    //getRoutePointsAndWaypoints() will help you to pass points and waypoints to drawRoute() function
+{
     var _waypoints = new Array();       //Define a variable for waypoints.
 
     if (_mapPoints.length > 2) //Waypoints will be come.
@@ -649,7 +653,7 @@ function loadItinerario()
         var a = document.createElement("div");
         b.appendChild(document.createTextNode(i+1 + ') ' + itinerario[i]));
         b.setAttribute("class", "changeIt");
-        a.appendChild(document.createTextNode(""));
+        a.appendChild(document.createTextNode("+"));
         a.setAttribute("class", "openPopUp");
 
         ul.appendChild(li);
@@ -783,6 +787,8 @@ function computeDuration(){
 
     var CORS = "https://crossorigin.me/";
 
+    totTime=parseInt(timeVisit*60);
+
     for(var i = 0; i < _mapPoints.length-1; i++)
     {
         var destination1 = _mapPoints[i].lat+","+_mapPoints[i].lng;
@@ -799,10 +805,10 @@ function computeDuration(){
                 var time = result.rows[0].elements[0].duration.value;
                 totTime = totTime + time;
                 var timeLabel = document.getElementById('time');
-
-                timeLabel.innerHTML = parseInt(totTime/60) +" min";
+                timeLabel.textContent = parseInt(totTime/60) +" min";
             }
         });
     }
+
 
 }
