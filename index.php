@@ -1,3 +1,4 @@
+
 <html>
 <head>
     <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -20,6 +21,10 @@
                 <p> my paragraph </p> <!-- children 1.0.1 -->
                 <button class="addItinerary" id="addItinerary"></button> <!--children 1.0.2-->
                 <button class="removeItinerary" id="removeItinerary"></button> <!--children 1.0.3-->
+                <div id="duration"> <!--children 1.0.4-->
+                    <div id="up"></div>
+                    <div id="down"></div>
+                </div>
             </div>
             <div class="column" id="column2"> <!-- children 1.1-->
                 <img id="previewImage"> <!-- children 1.1.0 -->
@@ -28,9 +33,10 @@
                     <a id="next" onclick="slideShows(1)">&#10095;</a> 
                 </div>
             </div>
+
             <div id="helpcontainer">  <!-- children 1.2-->
                 Benvenuti in My Firenze! Tramite i punti indicati sulla mappa potete scegliere
-                un itinerario per visitare i luoghi più piacevoli della città.
+                un itinerario per visitare i luoghi più piacevoli della città.<br>
             </div>
         </div>
     </div>
@@ -39,27 +45,44 @@
         <div id="logo">
             <a href="http://www.comune.fi.it/export/sites/retecivica/index.html"><img src="img/logofirenze.png"></a>
         </div>
-        <img id="ita" src="img/italia.png" onclick="flagIta()">
-        <img id="eng" src="img/ukbw.jpg" onclick="flagEng()">
-        <button id="help" onclick="helpMessage()"></button>
+        <img id="ita" src="img/it.png" onclick="flagIta()">
+        <img id="eng" src="img/enbw.png" onclick="flagEng()">
 
-        <button id="newItinerary" onclick="initMap(),inserisciMarkers(),newItinerary()"></button>
+
         <div id="favorites">
             <p id="best">Preferiti</p>
-            <ul id="menufavorites">
-                <li onclick="favorite('0')"><a id="fav1">Basilica e Museo di Santa Croce</a></li>
-                <li onclick="favorite('1')"><a id="fav2">Basilica di S.Lorenzo</a></li>
-                <li onclick="favorite('2')"><a id="fav3">Campanile di Giotto</a></li>
-                <li onclick="favorite('3')"><a id="fav4">Cappelle Medicee</a></li>
-                <li onclick="favorite('4')"><a id="fav5">Casa di Dante</a></li>
-                <li onclick="favorite('5')"><a id="fav6">Chiesa di Santa Trinita</a></li>
-                <li onclick="favorite('6')"><a id="fav7">Cimitero degli Inglesi</a></li>
-                <li onclick="favorite('7')"><a id="fav8">Cupola del Brunelleschi</a></li>
-            </ul>
-
+                <ul id="menufavorites">
+                    <li onclick="favorite('0')"><a id="fav1">Basilica e Museo di Santa Croce</a></li>
+                    <li onclick="favorite('1')"><a id="fav2">Basilica di S.Lorenzo</a></li>
+                    <li onclick="favorite('2')"><a id="fav3">Campanile di Giotto</a></li>
+                    <li onclick="favorite('3')"><a id="fav4">Cappelle Medicee</a></li>
+                    <li onclick="favorite('4')"><a id="fav5">Casa di Dante</a></li>
+                    <li onclick="favorite('5')"><a id="fav6">Chiesa di Santa Trinita</a></li>
+                    <li onclick="favorite('6')"><a id="fav7">Cimitero degli Inglesi</a></li>
+                    <li onclick="favorite('7')"><a id="fav8">Cupola del Brunelleschi</a></li>
+                </ul>
+        </div>
+        <div id="itinerary">
+            <p id="currentItinerary">Itinerario</p>
+            <ol id="menuItinerary">
+                <!-- Qui ci arrivano li creati da loadItinierario()  -->
+            </ol>
+        </div>
+        <div id="timeVisit">
+            <div id="left"></div>
+            <div id="right"></div>
+        </div>
+        <div id="timeItinerary">
+            <div id="info"></div>
+            <div id="time"></div>
+        </div>
+        <div id="footer">
+            <button id="help" onclick="helpMessage()"></button>
+            <button id="newItinerary" onclick="newItinerary()"></button>
         </div>
         <div id="map" onmousedown="hidepopup()"></div>
     </div>
-</body>
 
+
+</body>
 </html>
