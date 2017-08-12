@@ -402,8 +402,6 @@ $(document).ready(function(){
     addIt.addEventListener("click", function(){
 
         console.log(_mapPoints[0]);
-        swap1=-1;
-        swap2=-1;
 
         var app=0;
         var addItinerary = document.getElementById("descriptor");
@@ -462,10 +460,8 @@ $(document).ready(function(){
 
     remIt.addEventListener("click", function(){
 
-        swap1=-1;
-        swap2=-1;
-
         var remItinerary = document.getElementById("descriptor");
+        remItinerary.setAttribute('style', 'display:none');
         //find id
         var data = {
             lat: parseFloat(remItinerary.getAttribute('lat')),
@@ -501,7 +497,6 @@ $(document).ready(function(){
         }
         _mapPoints = deleteElement(_mapPoints, elem);
         getRoutePointsAndWaypoints();
-        remItinerary.setAttribute('style', 'display:none');
         totTime=0;
         computeDuration();
     });
@@ -689,18 +684,19 @@ function lastIndex(obj) {
 }
 function loadItinerario()
 {
-
     var ul = document.getElementById("menuItinerary");
     ul.innerHTML = '';
 
     for(var i=0; i<itinerario.length; i++){
         var li = document.createElement("li");
+        li.setAttribute("class", "listElements");
         li.setAttribute("order", ""+i);
         li.setAttribute("name", itinerario[i]);
         var b = document.createElement("div");
         var a = document.createElement("div");
         b.appendChild(document.createTextNode(i+1 + ') ' + itinerario[i]));
         b.setAttribute("class", "changeIt");
+        b.setAttribute("draggable", true);
         a.appendChild(document.createTextNode("+"));
         a.setAttribute("class", "openPopUp");
 
@@ -710,6 +706,8 @@ function loadItinerario()
 
         info(li,a,b);
     }
+    var cols = document.querySelectorAll('#menuItinerary .listElements');
+    [].forEach.call(cols, addDnDHandlers);
 }
 function info(li,a,b)
 {
@@ -777,26 +775,94 @@ function info(li,a,b)
             }
         });
     });
-    b.addEventListener('click', function(){
+}
 
-        if(swap1 == -1)
-        {
-            if(li.getAttribute('class')==null)
-                li.setAttribute('class','selected');
-            else
-                li.removeAttribute('class');
+var dragSrcEl = null;
 
-            swap1=li.getAttribute('order');
-        }
-        else if(swap2 == -1)
-        {
-            swap2=li.getAttribute('order');
-            swapArrays(swap1,swap2);
-            swap1=-1;
-            swap2=-1;
-        }
+function handleDragStart(e)
+{
+    // Target (this) element is the source node.
+    dragSrcEl = this;
 
-    });
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.outerHTML);
+
+    this.classList.add('dragElem');
+    swap1=this.getAttribute('order');
+
+}
+function handleDragOver(e)
+{
+    if (e.preventDefault)
+    {
+        e.preventDefault(); // Necessary. Allows us to drop.
+    }
+    this.classList.add('over');
+
+    e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+
+    return false;
+}
+
+function handleDragEnter(e)
+{
+    // this / e.target is the current hover target.
+}
+function handleDragLeave(e)
+{
+    this.classList.remove('over');  // this / e.target is previous target element.
+}
+
+function handleDrop(e)
+{
+    // this/e.target is current target element.
+
+    if (e.stopPropagation)
+    {
+        e.stopPropagation(); // Stops some browsers from redirecting.
+    }
+
+    // Don't do anything if dropping the same column we're dragging.
+    if (dragSrcEl != this)
+    {
+        // Set the source column's HTML to the HTML of the column we dropped on.
+        //alert(this.outerHTML);
+        //dragSrcEl.innerHTML = this.innerHTML;
+        //this.innerHTML = e.dataTransfer.getData('text/html');
+        this.parentNode.removeChild(dragSrcEl);
+        var dropHTML = e.dataTransfer.getData('text/html');
+        this.insertAdjacentHTML('beforebegin',dropHTML);
+        var dropElem = this.previousSibling;
+        addDnDHandlers(dropElem);
+
+        swap2=this.getAttribute('order');
+        swapArrays(swap1,swap2);
+        swap1=-1;
+        swap2=-1;
+
+
+    }
+    this.classList.remove('over');
+    return false;
+}
+
+function handleDragEnd(e)
+{
+    // this/e.target is the source node.
+    this.classList.remove('over');
+
+    /*[].forEach.call(cols, function (col) {
+     col.classList.remove('over');
+     });*/
+}
+function addDnDHandlers(elem)
+{
+    elem.addEventListener('dragstart', handleDragStart, false);
+    elem.addEventListener('dragenter', handleDragEnter, false);
+    elem.addEventListener('dragover', handleDragOver, false);
+    elem.addEventListener('dragleave', handleDragLeave, false);
+    elem.addEventListener('drop', handleDrop, false);
+    elem.addEventListener('dragend', handleDragEnd, false);
 
 }
 function swapArrays(swap1,swap2)

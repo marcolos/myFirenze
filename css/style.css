@@ -510,3 +510,19 @@ float: right;
 #timeItinerary{
     display: flex;
 }
+[draggable]
+{
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    /* Required to make elements draggable in old WebKit */
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
+}
+#menuItinerary li.over
+{
+    border: 1.5px dashed #2196F3;
+    border-top: 1.5px solid #2196F3;
+}
+
