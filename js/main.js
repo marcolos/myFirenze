@@ -1,11 +1,4 @@
 var lingua = "it";
-<<<<<<< HEAD
-var directionsService; // You can calculate directions (using a variety of methods of transportation) by using the DirectionsService object.
-var _mapPoints = new Array();  // Define a variable with all map points.
-var _directionsRenderer = '';  // Define a DirectionsRenderer variable.
-var map;
-function initMap() {   // lancia la mappa e viene svolta subito grazie alla CallBack nella riga 9 dell'HTML
-=======
 var directionsService; //You can calculate directions (using a variety of methods of transportation) by using the DirectionsService object.
 var _mapPoints = {};  //Define a variable with all map points.
 _mapPoints.length = 0;
@@ -19,10 +12,8 @@ var totTime = 0;
 
 function initMap() {  // lancia la mappa
 
-
     loadItinerario();
 
->>>>>>> origin/master
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 43.7695604, lng: 11.25581360000001}, // centrata inizialmente
         zoom: 14
@@ -32,38 +23,23 @@ function initMap() {  // lancia la mappa
     _directionsRenderer = new google.maps.DirectionsRenderer();   //DirectionsRenderer() is a used to render the direction
     _directionsRenderer.setMap(map);   // Set the map for directionsRenderer
 
-<<<<<<< HEAD
-    _directionsRenderer.setOptions({   // Set different options for DirectionsRenderer mehtods //draggable option will used to drag the route.
-        draggable: false
-=======
-    _directionsRenderer.setMap(map);   //Set the map for directionsRenderer
-
-
-<<<<<<< HEAD
-    _directionsRenderer.setOptions({              //Set different options for DirectionsRenderer mehtods //draggable option will used to drag the route.
-        draggable: true
->>>>>>> origin/master
-=======
     _directionsRenderer.setOptions({              //Set different options for DirectionsRenderer methods //draggable option will used to drag the route.
-        draggable: true,
         suppressMarkers: true
->>>>>>> origin/master
+
     });
 
     // Indica la posizione corrente
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
+    if (navigator.geolocation)
+    {
+        navigator.geolocation.getCurrentPosition(function(position)
+        {
             var posCorrente = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-<<<<<<< HEAD
 
 
-            var image1='img/poscorrente.png';
-=======
             var image1='img/position.png';
->>>>>>> origin/master
             var marker = new google.maps.Marker({
                 position: posCorrente,
                 map: map,
@@ -94,13 +70,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
 }
-
-<<<<<<< HEAD
-function flagIta() {  // viene svolta attraverso l' on-click su flangIta nell' HTML
-=======
 function flagIta()
 {
->>>>>>> origin/master
     var popUp = document.getElementById('descriptor');
     popUp.setAttribute('style', 'display:none;');
     var time = document.getElementById('right');
@@ -127,12 +98,10 @@ function flagIta()
 
 }
 
-<<<<<<< HEAD
-function flagEng() {  // viene svolta attraverso l' on-click su flangEng nell' HTML
-=======
+
+
 function flagEng()
 {
->>>>>>> origin/master
     var popUp = document.getElementById('descriptor');
     var time1 = document.getElementById('right');
     time1.textContent = "";
@@ -196,16 +165,12 @@ function newItinerary()
 function inserisciMarkers()
 {
     var url = "marker.php?lingua=" + lingua;
-<<<<<<< HEAD
     $.get( url, function(data) {  // attraverso il get faccio una richiesta a markers.php. Dentro data ho la risposta del php
-        var markers = JSON.parse(data); // markers ora è l'array uguale al php(vedi marker.php). Siccome php genera ed invia codice in formato JSON, con il parse viene decifrato per essere leggibile al javascript.
+        var markers = JSON.parse(data); // markers ora è l'array uguale al php(vedi marker.php). Siccome php genera ed invia codice in formato JSON, con il parse viene decifrato per essere leggibile al javascript
 
-        //console.log(markers);
-
-=======
     $.get( url, function(data) {
         var markers = JSON.parse(data); // markers ora è l'array uguale al php. dentro ci sono una lista di coordinate con un nom //decodifica
->>>>>>> origin/master
+
         for (var index in markers) { // inserisco nella mappa ognuno dei markers
             var marker = markers[index];// index è l'indice nell'array
             var name = marker.name;
@@ -229,6 +194,7 @@ function inserisciMarkers()
 
         }
     });
+});
 }
 function favorite(index)
 {
@@ -395,6 +361,7 @@ function drawRoute(originAddress, destinationAddress, _waypoints)       //drawRo
 }
 
 $(document).ready(function(){
+
     inserisciMarkers();
 
     var addIt=document.getElementById("addItinerary");
@@ -656,14 +623,6 @@ function hidepopup()
 {
     document.getElementById('descriptor').setAttribute('style', 'display:none');
 }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/master
-=======
 var l = 0;
 
 function generateUUID() {
@@ -704,12 +663,12 @@ function loadItinerario()
         li.appendChild(b);
         li.appendChild(a);
 
-        info(li,a,b);
+        info(li,a);
     }
     var cols = document.querySelectorAll('#menuItinerary .listElements');
     [].forEach.call(cols, addDnDHandlers);
 }
-function info(li,a,b)
+function info(li,a)
 {
     a.addEventListener('click', function(){
 
@@ -868,7 +827,6 @@ function addDnDHandlers(elem)
 function swapArrays(swap1,swap2)
 {
     var app;
->>>>>>> origin/master
 
     app=itinerario[swap1];
     itinerario[swap1]=itinerario[swap2];
