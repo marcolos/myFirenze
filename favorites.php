@@ -5,10 +5,10 @@
 $lingua = $_GET['lingua'];
 
 if(isset($lingua) and $lingua == "it") {
-    $query = "SELECT name_it, lat, lng, desc_it, path, duration FROM poi WHERE ID_POI IN (4,13,23,25,28,3,10,12)";
+    $query = "SELECT name_it, lat, lng, desc_it, path, duration FROM poi WHERE ID_POI IN (4,13,28,3,30)";
 
 } else{
-    $query = "SELECT name_en, lat, lng,  desc_en, path, duration FROM poi WHERE ID_POI IN (4,13,23,25,28,3,10,12)";
+    $query = "SELECT name_en, lat, lng,  desc_en, path, duration FROM poi WHERE ID_POI IN (4,13,28,3,30)";
 
 }
 $pointsOfInterest = mysqli_query($conn, $query); // Eseguo la query , $pointsOfInterest è il nome che ho dato alla query

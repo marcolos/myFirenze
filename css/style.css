@@ -274,10 +274,10 @@ float: right;
 }
 #helpcontainer
 {
-    margin-top: 3%;
+    margin-top: 5%;
     font-family: Cochin;
-    margin-right: 40%;
-    color: #3562cd;
+    margin-right: 3%;
+    color: #001844;
 
 
 }
@@ -433,7 +433,7 @@ float: right;
     position: fixed;
     z-index:900;
     line-height:3em;
-    bottom: 100px;
+    bottom: 80px;
 }
 #menuItinerary
 {
@@ -520,3 +520,50 @@ float: right;
     border-top: 1.5px solid #2196F3;
 }
 
+#QRgenerator
+{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20%;
+    margin-left: 5%;
+    position: fixed;
+}
+
+#descriptorQR{
+    z-index: 900;
+    background: #cdcace;
+    background: rgba(255, 255, 255, 0.8);
+    width: 20% !important;
+    height: 30% !important;
+    margin-top: 10%;
+    margin-left: 40%;
+    margin-right: 40%;
+    padding: 10px;
+    position: fixed;
+    display: none;
+    /*border-radius: 5px;*/
+    /*box-shadow: 5px 2px 2px #aaa;*/
+}
+
+#descriptorQR img{
+    max-width: 90%;
+}
+
+#descriptorQR p{
+    text-align: center;
+}
+
+#descriptorQR span{
+    font-family: "Georgia";
+    overflow: scroll;
+    max-height: 150px;
+    cursor: pointer;
+
+}

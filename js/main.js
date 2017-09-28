@@ -10,6 +10,10 @@ var swap1=-1;
 var swap2=-1;
 var totTime = 0;
 
+var endPoint = "http://localhost:8080/myFirenze/index.php?";
+
+var l = 0; // serve per l'UUID da generare
+
 function initMap() {  // lancia la mappa
 
     loadItinerario();
@@ -51,6 +55,7 @@ function initMap() {  // lancia la mappa
                     _mapPoints[0] = posCorrente;
                     _mapPoints.length = 1;
             }
+            reinsertItinerary();
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -60,7 +65,6 @@ function initMap() {  // lancia la mappa
     }
 
     changeLang();
-
 }
 
 
@@ -298,8 +302,8 @@ function getRoutePointsAndWaypoints()    //getRoutePointsAndWaypoints() will hel
 {
     var _waypoints = new Array();       //Define a variable for waypoints.
 
-    if (_mapPoints.length > 2) //Waypoints will be come.
-    {
+    if (_mapPoints.length > 2)
+        {
         for(var uuid in _mapPoints)
         {
             if(_mapPoints.hasOwnProperty(uuid) && uuid !== 'length'){
@@ -397,7 +401,7 @@ $(document).ready(function(){
                 getRoutePointsAndWaypoints();
                 addItinerary.setAttribute('style', 'display:none');
                 timeVisit= parseInt(timeVisit) + parseInt(addItinerary.getAttribute('duration'));
-                tVisit.textContent = timeVisit + " min";
+                tVisit.textContent = marco(timeVisit);
                 totTime=0;
                 computeDuration();
                 console.log(totTime);
@@ -457,7 +461,7 @@ $(document).ready(function(){
                     }
                     else
                     {
-                        tVisit.textContent = timeVisit + " min";
+                        tVisit.textContent = marco(timeVisit);
                     }
                 }
             }
@@ -581,7 +585,7 @@ function changeLang(){
                 "la bellissima città di Firenze.";
             helpsMe.textContent = "AIUTO";
             nwItinerary.textContent = "NUOVO ITINERARIO";
-            favorite.textContent = "Preferiti";
+            favorite.textContent = "Luoghi famosi";
             currentItinerary.textContent = "Itinerario";
             timeVisit.textContent = "Tempo di visita: ";
             googleTime.textContent = "Tempo totale: ";
@@ -603,7 +607,7 @@ function changeLang(){
                 "beautiful city of Florence.";
             helpsMe.textContent = "HELP";
             nwItinerary.textContent = "NEW ITINERARY";
-            favorite.textContent = "Favorites";
+            favorite.textContent = "Famous places";
             currentItinerary.textContent = "Itinerary";
             timeVisit.textContent = "Time of visit: ";
             googleTime.textContent = "Total time: ";
@@ -622,8 +626,8 @@ function changeLang(){
 function hidepopup()
 {
     document.getElementById('descriptor').setAttribute('style', 'display:none');
+    document.getElementById('descriptorQR').setAttribute('style', 'display:none');
 }
-var l = 0;
 
 function generateUUID() {
     l = l+1;
@@ -858,7 +862,7 @@ function removeFromArray(array,index) {
 
 function computeDuration(){
 
-    var CORS = "https://crossorigin.me/";
+    var CORS = "https://cors-anywhere.herokuapp.com/";
 
     totTime=parseInt(timeVisit*60);
 
@@ -878,10 +882,84 @@ function computeDuration(){
                 var time = result.rows[0].elements[0].duration.value;
                 totTime = totTime + time;
                 var timeLabel = document.getElementById('time');
-                timeLabel.textContent = parseInt(totTime/60) +" min";
+                timeLabel.textContent = marco(parseInt(totTime/60));
             }
         });
     }
 
 
+}
+
+function marco(minutes){
+    if( minutes < 60 ){
+        return minutes+"min"
+    }else{
+        return (minutes-minutes%60)/60+"h "+minutes%60+"min"
+    }
+}
+
+function QRMessage(){
+
+    var QRdiv = document.getElementById("descriptorQR");
+    QRdiv.setAttribute('style', 'display:block;');
+
+
+    var newArray = JSON.parse(JSON.stringify(_mapPoints));
+
+    newArray = deleteElement(newArray, '0');
+
+    var obj = {
+        "way": newArray,
+        "itr": itinerario,
+        "t": timeVisit
+    };
+
+    var text = JSON.stringify(obj);
+
+    var QRurl = endPoint + "way=" + text;
+
+    var imagequery = "http://api.qrserver.com/v1/create-qr-code/?data=" + QRurl + "&size=150x150"
+
+    $('#QRimage').attr("src", imagequery);
+
+}
+
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function reinsertItinerary(){
+    var tmpArray = JSON.parse(getParameterByName("way"));
+    console.log(tmpArray)
+
+    itinerario = tmpArray.itr;
+    console.log(itinerario)
+    loadItinerario();
+
+    timeVisit = tmpArray.t;
+    var tVisit = document.getElementById('right');
+    tVisit.textContent = marco(timeVisit);
+
+    var wayTmp = tmpArray.way;
+
+    for(var uuid in wayTmp){
+        if(wayTmp.hasOwnProperty(uuid) && uuid !== 'length'){
+            _mapPoints[parseInt(uuid)] = wayTmp[uuid];
+        }
+    }
+    _mapPoints['length'] = wayTmp['length'];
+
+    l = wayTmp['length'];
+
+    getRoutePointsAndWaypoints();
+
+    totTime=0;
+    computeDuration();
 }
