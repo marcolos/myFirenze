@@ -670,7 +670,7 @@ function loadItinerario()
         b.appendChild(document.createTextNode(i+1 + ') ' + itinerario[i]));
         b.setAttribute("class", "changeIt");
         b.setAttribute("draggable", true);
-        a.appendChild(document.createTextNode());
+        a.appendChild(document.createTextNode("+"));
         a.setAttribute("class", "openPopUp");
 
         ul.appendChild(li);
