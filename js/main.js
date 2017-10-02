@@ -581,8 +581,13 @@ function changeLang(){
             itinerary.children[1].children[0].children[2].textContent = "Aggiungi all'itinerario +";
             itinerary.children[1].children[0].children[3].textContent = "Rimuovi dall'itineraro -";
             itinerary.children[1].children[0].children[4].children[0].textContent = "Tempo di visita: ";
-            itinerary.children[1].children[2].textContent = "Benvenuti in myFirenze! Vi servirà per visitare " +
-                "la bellissima città di Firenze.";
+            itinerary.children[1].children[2].textContent = "Benvenuti in MyFirenze! Questa piattaforma mette a vostra disposizione la possibilità di creare un itinerario per visitare la città di Firenze. "  +
+                "Cliccare sui markers per aprire la finestra descrittiva del luogo. " +
+                "Aggiunta luogo: premendo il pulsante verde “Aggiungi all’itinerario” potete aggiungere il luogo alla lista che verrà visualizzata nella finestra itinerario. " +
+                "Rimozione luogo : premere il pulsante rosso “Rimuovi dall'itinerario. " +
+            "Swap lista : una volta creata la lista è possibile cambiare l'ordine tramite trascinamento. " +
+            "Tempo visita: tempo necessario solo per visitare i luoghi selezionati. " +
+                "Tempo totale: oltre al tempo di visita comprende anche quello necessario per percorrere l’itinerario. ";
             helpsMe.textContent = "AIUTO";
             nwItinerary.textContent = "NUOVO ITINERARIO";
             favorite.textContent = "Luoghi famosi";
@@ -603,8 +608,13 @@ function changeLang(){
             itinerary.children[1].children[0].children[2].textContent = "Add to itinerary +";
             itinerary.children[1].children[0].children[3].textContent = "Remove from itinerary -";
             itinerary.children[1].children[0].children[4].children[0].textContent = "Time of visit: ";
-            itinerary.children[1].children[2].textContent = "Welcome! This is myFirenze. It will help you to visit the " +
-                "beautiful city of Florence.";
+            itinerary.children[1].children[2].textContent = "Welcome in MyFirenze! This site offers you the possibility to create your own itinerary for visit the city of Florence. " +
+            "Click on the red markers to visualize the window with the description of each place. " +
+            "Adding a place: click on the green button “Add to itinerary” to add a place in your list. " +
+            "Removing a place: click on the red button “Remove from itinerary” to remove a place from your list. " +
+            "Swap: once the list is created, it will be displayed in the window on the right. You can change its order just swapping between the places. " +
+            "Time of visit: the time needed to only visit the places. " +
+            "Total time : the time needed to visit the places and travel(by walk) between them. ";
             helpsMe.textContent = "HELP";
             nwItinerary.textContent = "NEW ITINERARY";
             favorite.textContent = "Famous places";
@@ -660,7 +670,7 @@ function loadItinerario()
         b.appendChild(document.createTextNode(i+1 + ') ' + itinerario[i]));
         b.setAttribute("class", "changeIt");
         b.setAttribute("draggable", true);
-        a.appendChild(document.createTextNode("+"));
+        a.appendChild(document.createTextNode());
         a.setAttribute("class", "openPopUp");
 
         ul.appendChild(li);
