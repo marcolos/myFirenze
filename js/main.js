@@ -581,13 +581,13 @@ function changeLang(){
             itinerary.children[1].children[0].children[2].textContent = "Aggiungi all'itinerario +";
             itinerary.children[1].children[0].children[3].textContent = "Rimuovi dall'itineraro -";
             itinerary.children[1].children[0].children[4].children[0].textContent = "Tempo di visita: ";
-            itinerary.children[1].children[2].textContent = "Benvenuti in MyFirenze! Questa piattaforma mette a vostra disposizione la possibilità di creare un itinerario per visitare la città di Firenze. "  +
-                "Cliccare sui markers per aprire la finestra descrittiva del luogo. " +
-                "Aggiunta luogo: premendo il pulsante verde “Aggiungi all’itinerario” potete aggiungere il luogo alla lista che verrà visualizzata nella finestra itinerario. " +
-                "Rimozione luogo : premere il pulsante rosso “Rimuovi dall'itinerario. " +
-            "Swap lista : una volta creata la lista è possibile cambiare l'ordine tramite trascinamento. " +
-            "Tempo visita: tempo necessario solo per visitare i luoghi selezionati. " +
-                "Tempo totale: oltre al tempo di visita comprende anche quello necessario per percorrere l’itinerario. ";
+            itinerary.children[1].children[2].innerHTML = "<b style='color: #dd3333; font-weight: 900;'>Benvenuti in MyFirenze! </b> Questa piattaforma mette a vostra disposizione la possibilità di creare un itinerario per visitare la città di Firenze. <br> <br> "  +
+                "Cliccare sui markers per aprire la finestra descrittiva del luogo. <br> <br> " +
+                "<b style='color: #dd3333; font-weight: 900;'>Aggiunta luogo</b>: premendo il pulsante verde “Aggiungi all’itinerario” potete aggiungere il luogo alla lista che verrà visualizzata nella finestra itinerario.<br>  <br> " +
+                "<b style='color: #dd3333; font-weight: 900;'>Rimozione luogo </b>: premere il pulsante rosso “Rimuovi dall'itinerario. <br> <br>" +
+            "<b style='color: #dd3333; font-weight: 900;'>Swap lista </b>: una volta creata la lista è possibile cambiare l'ordine tramite trascinamento.<br> <br> " +
+            "<b style='color: #dd3333; font-weight: 900;'>Tempo visita </b>: tempo necessario solo per visitare i luoghi selezionati. <br> <br>" +
+                "<b style='color: #dd3333; font-weight: 900;'>Tempo totale </b>: oltre al tempo di visita comprende anche quello necessario per percorrere l’itinerario.<br> <br> ";
             helpsMe.textContent = "AIUTO";
             nwItinerary.textContent = "NUOVO ITINERARIO";
             favorite.textContent = "Luoghi famosi";
@@ -608,13 +608,13 @@ function changeLang(){
             itinerary.children[1].children[0].children[2].textContent = "Add to itinerary +";
             itinerary.children[1].children[0].children[3].textContent = "Remove from itinerary -";
             itinerary.children[1].children[0].children[4].children[0].textContent = "Time of visit: ";
-            itinerary.children[1].children[2].textContent = "Welcome in MyFirenze! This site offers you the possibility to create your own itinerary for visit the city of Florence. " +
-            "Click on the red markers to visualize the window with the description of each place. " +
-            "Adding a place: click on the green button “Add to itinerary” to add a place in your list. " +
-            "Removing a place: click on the red button “Remove from itinerary” to remove a place from your list. " +
-            "Swap: once the list is created, it will be displayed in the window on the right. You can change its order just swapping between the places. " +
-            "Time of visit: the time needed to only visit the places. " +
-            "Total time : the time needed to visit the places and travel(by walk) between them. ";
+            itinerary.children[1].children[2].innerHTML = "<b style='color: #dd3333; font-weight: 900;'> Welcome in MyFirenze! </b> This site offers you the possibility to create your own itinerary for visit the city of Florence. <br> <br>" +
+            "Click on the red markers to visualize the window with the description of each place.<br> <br> " +
+            "<b style='color: #dd3333; font-weight: 900;'> Adding a place: </b> click on the green button “Add to itinerary” to add a place in your list.<br> <br> " +
+            "<b style='color: #dd3333; font-weight: 900;'> Removing a place: </b> click on the red button “Remove from itinerary” to remove a place from your list. <br> <br>" +
+            "<b style='color: #dd3333; font-weight: 900;'> Swap:</b> once the list is created, it will be displayed in <br> <br> " +
+            "<b style='color: #dd3333; font-weight: 900;'> Time of visit: </b> time needed only to visit the places <br> <br>" +
+            "<b style='color: #dd3333; font-weight: 900;'> Total time :</b> the time needed to visit the places and travel(by walk) between them.<br> <br> ";
             helpsMe.textContent = "HELP";
             nwItinerary.textContent = "NEW ITINERARY";
             favorite.textContent = "Famous places";
